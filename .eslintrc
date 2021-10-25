@@ -1,0 +1,64 @@
+{
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "node": true
+  },
+  "parser": "babel-eslint",
+  "plugins": ["react", "react-hooks"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true
+    },
+    "sourceType": "module"
+  },
+  "rules": {
+    "semi": 0,
+    "comma-dangle": [1, "always-multiline"],
+    "no-unused-vars": "error",
+    "indent": ["error", 2],
+    "max-len": ["error", { "code": 80, "ignoreUrls": true }],
+    "no-confusing-arrow": ["error", { "allowParens": false }],
+    "lines-around-comment": [
+      "error",
+      {
+        "beforeBlockComment": true,
+        "afterBlockComment": true,
+        "beforeLineComment": true,
+        "afterLineComment": true,
+        "allowBlockStart": true,
+        "allowBlockEnd": true,
+        "allowObjectStart": true,
+        "allowObjectEnd": true,
+        "allowArrayStart": true,
+        "allowArrayEnd": true
+      }
+    ],
+    // NextJs specific fix: suppress errors for missing 'import React' in files for nextjs
+    "react/react-in-jsx-scope": "off",
+    // NextJs specific fix: allow jsx syntax in js files
+    "react/jsx-filename-extension": [
+      1,
+      { "extensions": [".js", ".jsx", "tsx"] }
+    ], //should add ".ts" if typescript project
+    "react/display-name": 1,
+    "react/jsx-props-no-spreading": "off"
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@next/next/recommended",
+    "airbnb",
+    "airbnb/hooks",
+    "plugin:react/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:jsx-a11y/recommended",
+    "prettier"
+  ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  }
+}
