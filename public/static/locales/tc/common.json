@@ -1,0 +1,11 @@
+{
+  "home": {
+    "tabTitle": "神紗車"
+  },
+  "dashboard": {
+    "tabTitle": "儀錶盤"
+  },
+  "settings": {
+    "tabTitle": "設定"
+  }
+}

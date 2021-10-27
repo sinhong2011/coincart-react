@@ -1,0 +1,11 @@
+{
+  "home": {
+    "tabTitle": "收銀车"
+  },
+  "dashboard": {
+    "tabTitle": "仪表盘"
+  },
+  "settings": {
+    "tabTitle": "设定"
+  }
+}

@@ -1,4 +1,4 @@
-import { Languangs } from 'types/react-i18next'
+import { Languangs } from 'types/i18n'
 
 export type ResponseFactory<TRecords> = {
   header: {

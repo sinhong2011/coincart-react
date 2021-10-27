@@ -1,13 +1,15 @@
 import '../styles/globals.css'
+import '../styles/main.scss'
 import NextNprogress from 'nextjs-progressbar'
-
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import { isBrowser } from 'utils/xCm'
+import { appWithTranslation } from 'next-i18next'
 import BottomNavBar from '../components/BottomNavBar'
+import HocWrapper from '../components/HocWrapper'
 
-function MyApp({ Component, pageProps }: AppProps) {
+function CoinCartApp({ Component, pageProps }: AppProps) {
   const [docLoader, setDocLoader] = useState<HTMLElement | null>(null)
 
   const removeLoader = () => {
@@ -52,10 +54,12 @@ function MyApp({ Component, pageProps }: AppProps) {
         showOnShallow
       />
       <div className="_app-container">
-        <Component {...pageProps} />
-        <BottomNavBar />
+        <HocWrapper>
+          <Component {...pageProps} />
+          <BottomNavBar />
+        </HocWrapper>
       </div>
     </>
   )
 }
-export default MyApp
+export default appWithTranslation(CoinCartApp)

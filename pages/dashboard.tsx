@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { Languangs } from '../types/i18n'
 
-const HomePage: NextPage = () => <div>Home Page</div>
+const DashboardPage: NextPage = () => <div>Dashboard Page</div>
 
 export async function getStaticProps({ locale }: { locale: Languangs }) {
   return {
@@ -13,4 +13,4 @@ export async function getStaticProps({ locale }: { locale: Languangs }) {
   }
 }
 
-export default HomePage
+export default DashboardPage

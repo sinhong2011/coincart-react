@@ -15,7 +15,7 @@ const Loader = () => (
         <tr>
           <td>
             <div className="loader_logo">
-              <img src="vercel.svg" alt="" width="200" height="200" />
+              <img src="/vercel.svg" alt="" width="200" height="200" />
             </div>
             <div className="bar">
               <span className="loader-pc wait" />

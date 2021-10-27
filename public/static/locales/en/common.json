@@ -1,0 +1,11 @@
+{
+  "home": {
+    "tabTitle": "Cart"
+  },
+  "dashboard": {
+    "tabTitle": "dashboard"
+  },
+  "settings": {
+    "tabTitle": "settings"
+  }
+}
