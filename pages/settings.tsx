@@ -14,6 +14,7 @@ import ExpandMore from '@mui/icons-material/ExpandMore'
 import StarBorder from '@mui/icons-material/StarBorder'
 import { Languangs } from 'types/i18n'
 import { ListItem } from '@material-ui/core'
+import { MaterialUISwitch } from '../components/MaterialUISwitch'
 
 const SettingsPage: NextPage = () => {
   const [open, setOpen] = useState(true)
@@ -23,7 +24,7 @@ const SettingsPage: NextPage = () => {
   }
 
   return (
-    <div className="page-cointainer">
+    <div className="page-container">
       <List
         sx={{ width: '100%', bgcolor: 'background.paper' }}
         component="nav"
@@ -43,6 +44,7 @@ const SettingsPage: NextPage = () => {
             <LightMode />
           </ListItemIcon>
           <ListItemText primary="Dark Theme" />
+          <MaterialUISwitch />
         </ListItem>
         <ListItemButton onClick={handleClick}>
           <ListItemIcon>
