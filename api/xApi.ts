@@ -1,15 +1,10 @@
-import { AxiosRequestConfig } from 'axios'
 import { GetCoinCartRequest, GetCoinCartResponse } from 'types/apiTypes'
 import { XHttpClient } from 'utils/xHttpClient'
 
 class XApi extends XHttpClient {
-  constructor(config: AxiosRequestConfig) {
-    super(config)
-  }
-
   public async getCoinCartSchedule(params: GetCoinCartRequest) {
     return this.instance.get<GetCoinCartRequest, GetCoinCartResponse>(
-      `/coin-cart-schedule`,
+      '/coin-cart-schedule',
       { params }
     )
   }

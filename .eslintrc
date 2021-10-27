@@ -1,64 +1,175 @@
 {
-  "env": {
-    "browser": true,
-    "commonjs": true,
-    "es6": true,
-    "node": true
-  },
-  "parser": "babel-eslint",
-  "plugins": ["react", "react-hooks"],
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true,
-      "modules": true
-    },
-    "sourceType": "module"
+    "project": "./tsconfig.json",
+    // typescript-eslint specific options
+    "warnOnUnsupportedTypeScriptVersion": true
   },
-  "rules": {
-    "semi": 0,
-    "comma-dangle": [1, "always-multiline"],
-    "no-unused-vars": "error",
-    "indent": ["error", 2],
-    "max-len": ["error", { "code": 80, "ignoreUrls": true }],
-    "no-confusing-arrow": ["error", { "allowParens": false }],
-    "lines-around-comment": [
-      "error",
-      {
-        "beforeBlockComment": true,
-        "afterBlockComment": true,
-        "beforeLineComment": true,
-        "afterLineComment": true,
-        "allowBlockStart": true,
-        "allowBlockEnd": true,
-        "allowObjectStart": true,
-        "allowObjectEnd": true,
-        "allowArrayStart": true,
-        "allowArrayEnd": true
+  "env": {
+    "node": true,
+    "browser": true,
+    "es6": true
+  },
+  "overrides": [
+    {
+      "files": ["**/*.test.js"],
+      "env": {
+        "jest": true
       }
-    ],
-    // NextJs specific fix: suppress errors for missing 'import React' in files for nextjs
-    "react/react-in-jsx-scope": "off",
-    // NextJs specific fix: allow jsx syntax in js files
-    "react/jsx-filename-extension": [
-      1,
-      { "extensions": [".js", ".jsx", "tsx"] }
-    ], //should add ".ts" if typescript project
-    "react/display-name": 1,
-    "react/jsx-props-no-spreading": "off"
-  },
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": [
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended"
+      ],
+      "parser": "@typescript-eslint/parser",
+      "plugins": ["@typescript-eslint"],
+      "rules": {
+        "no-use-before-define": "off",
+        "@typescript-eslint/no-non-null-assertion": "off",
+        "@typescript-eslint/no-use-before-define": ["error"],
+        "no-shadow": "off",
+        "@typescript-eslint/no-shadow": ["error"],
+        "@typescript-eslint/no-empty-function": ["warn"],
+        "react/prop-types": "off",
+        "@typescript-eslint/explicit-module-boundary-types": "off"
+      }
+    }
+  ],
   "extends": [
+    "airbnb-base",
     "eslint:recommended",
-    "plugin:@next/next/recommended",
-    "airbnb",
-    "airbnb/hooks",
     "plugin:react/recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
-    "plugin:jsx-a11y/recommended",
+    "prettier",
+    "next/core-web-vitals",
+    "plugin:import/typescript",
+    "next",
+    "next/core-web-vitals"
+  ],
+  "plugins": [
+    "react",
+    "react-hooks",
+    "import",
+    "jsx-a11y",
+    "unused-imports",
     "prettier"
   ],
   "globals": {
     "Atomics": "readonly",
-    "SharedArrayBuffer": "readonly"
+    "React": "writable",
+    "SharedArrayBuffer": "readonly",
+    "QRScanner": false,
+    "xQR": false,
+    "__base": false
+  },
+  "rules": {
+    "@next/next/no-img-element": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "unused-imports/no-unused-imports": "error",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "unused-imports/no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "varsIgnorePattern": "^_",
+        "args": "after-used",
+        "argsIgnorePattern": "^_"
+      }
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true
+      }
+    ],
+    "max-len": 0,
+    "no-continue": 0,
+    "camelcase": 0,
+    "no-console": 0,
+    "no-underscore-dangle": 0,
+    "react/react-in-jsx-scope": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": 0,
+    "linebreak-style": ["off", "windows"],
+    "import/prefer-default-export": 0,
+    "no-param-reassign": 0,
+    "object-curly-newline": 0,
+    "class-methods-use-this": 0,
+    "react/prop-types": 1,
+    "new-cap": 0,
+    "no-extra-boolean-cast": 0,
+    "guard-for-in": 0,
+    "no-restricted-syntax": ["error", "WithStatement"],
+    "no-plusplus": 0,
+    "no-irregular-whitespace": 0,
+    "default-case": 0,
+    "no-restricted-properties": 0,
+    "eqeqeq": 0,
+    "radix": 0,
+    "arrow-parens": 0,
+    "consistent-return": 0,
+    "prefer-rest-params": 0,
+    "no-script-url": 0,
+    "import/newline-after-import": 0,
+    "operator-linebreak": 0,
+    "max-classes-per-file": 0,
+    "semi": ["error", "never"],
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "always-multiline",
+        "objects": "always-multiline",
+        "imports": "always-multiline",
+        "exports": "always-multiline",
+        "functions": "never"
+      }
+    ],
+    "quotes": ["error", "single"],
+    "quote-props": ["error", "as-needed"],
+    "eol-last": ["error", "always"],
+    // "import/order": [
+    //   "error",
+    //   {
+    //     "groups": ["builtin", "external", "internal"],
+    //     "pathGroups": [
+    //       {
+    //         "pattern": "react",
+    //         "group": "external",
+    //         "position": "before"
+    //       }
+    //     ],
+    //     "newlines-between": "always",
+    //     "alphabetize": {
+    //       "order": "asc",
+    //       "caseInsensitive": true
+    //     }
+    //   }
+    // ],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "react/jsx-no-target-blank": 1
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx", ".json"],
+        "moduleDirectory": ["node_modules", "./"]
+      },
+      "typescript": {}
+    },
+    "react": {
+      "version": "detect"
+    }
   }
 }
