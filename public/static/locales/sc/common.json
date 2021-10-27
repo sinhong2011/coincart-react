@@ -1,4 +1,9 @@
 {
+  "common": {
+    "language": "語言",
+    "darkMode": "暗黑模式",
+    "settings": "设定"
+  },
   "home": {
     "tabTitle": "收銀车"
   },

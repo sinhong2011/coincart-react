@@ -1,6 +1,6 @@
 import Switch from '@mui/material/Switch'
 import { styled } from '@mui/material/styles'
-import { Theme } from '@material-ui/core'
+import { Theme } from '@mui/material'
 
 export const MaterialUISwitch = styled(Switch)(
   ({ theme }: { theme: Theme }) => ({

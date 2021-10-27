@@ -1,8 +1,4 @@
-import {
-  BottomNavigation,
-  BottomNavigationAction,
-  Paper,
-} from '@material-ui/core'
+import { BottomNavigation, BottomNavigationAction, Paper } from '@mui/material'
 import { useRouter } from 'next/dist/client/router'
 import { useState } from 'react'
 import LocationOnIcon from '@mui/icons-material/LocationOn'

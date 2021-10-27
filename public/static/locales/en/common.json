@@ -1,4 +1,9 @@
 {
+  "common": {
+    "language": "Language",
+    "darkMode": "Dark Mode",
+    "settings": "Settings"
+  },
   "home": {
     "tabTitle": "Cart"
   },

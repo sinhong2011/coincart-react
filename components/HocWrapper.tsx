@@ -4,6 +4,6 @@ type HocWrapperProps = {
   children: React.ReactNode
 }
 
-const HocWrapper = ({ children }: HocWrapperProps) => <> {children}</>
+const HocWrapper = ({ children }: HocWrapperProps) => <>{children}</>
 
 export default HocWrapper
