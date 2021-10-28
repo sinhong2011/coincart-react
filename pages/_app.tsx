@@ -6,11 +6,17 @@ import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import { isBrowser } from 'utils/xCm'
 import { appWithTranslation } from 'next-i18next'
+import { ThemeProvider } from '@mui/material/styles'
+import { useRouter } from 'next/router'
 import BottomNavBar from '../components/BottomNavBar'
-import HocWrapper from '../components/HocWrapper'
+import { useAppConfig } from '../store/hooks'
+import { themes } from '../constant/theme'
+import { wrapper } from '../store/index'
 
 function CoinCartApp({ Component, pageProps }: AppProps) {
   const [docLoader, setDocLoader] = useState<HTMLElement | null>(null)
+  const appConfig = useAppConfig()
+  const router = useRouter()
 
   const removeLoader = () => {
     setDocLoader(null)
@@ -20,7 +26,7 @@ function CoinCartApp({ Component, pageProps }: AppProps) {
     if (isBrowser()) {
       setDocLoader(document.getElementById('document_loader'))
 
-      // loaderRef.current?.ontransitionend.
+      appConfig.initApp()
     }
   }, [isBrowser()])
 
@@ -36,6 +42,12 @@ function CoinCartApp({ Component, pageProps }: AppProps) {
       docLoader?.removeEventListener('webkittransitionend', removeLoader)
     }
   }, [docLoader])
+
+  useEffect(() => {
+    router.push(router.route, router.route, {
+      locale: appConfig.appState.language,
+    })
+  }, [appConfig.appState.language])
 
   return (
     <>
@@ -53,13 +65,14 @@ function CoinCartApp({ Component, pageProps }: AppProps) {
         options={{ showSpinner: false, easing: 'ease', speed: 500 }}
         showOnShallow
       />
-      <div className="_app-container">
-        <HocWrapper>
+
+      <ThemeProvider theme={themes[appConfig.appState.mode]}>
+        <div className="_app-container">
           <Component {...pageProps} />
           <BottomNavBar />
-        </HocWrapper>
-      </div>
+        </div>
+      </ThemeProvider>
     </>
   )
 }
-export default appWithTranslation(CoinCartApp)
+export default wrapper.withRedux(appWithTranslation(CoinCartApp))

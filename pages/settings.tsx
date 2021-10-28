@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useState } from 'react'
 import type { NextPage } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import ListSubheader from '@mui/material/ListSubheader'
@@ -17,7 +17,7 @@ import { Collapse, Divider, ListItem } from '@mui/material'
 import { MaterialUISwitch } from 'components/MaterialUISwitch'
 import { useTranslation } from 'next-i18next'
 import { LanguageSelector } from 'components/LanguageSelector'
-import { DarkModeContext } from '../context/dark-mode/slice'
+import { useAppConfig } from '../store/hooks'
 
 const SettingsPage: NextPage = () => {
   const [open, setOpen] = useState(true)
@@ -26,12 +26,12 @@ const SettingsPage: NextPage = () => {
     setOpen(!open)
   }
 
-  const [darkModeState, darkModeActions] = useContext(DarkModeContext)
+  const { appState, setDarkMode, setLightMode } = useAppConfig()
 
   return (
     <div className="page-container">
       <List
-        sx={{ width: '100%', bgcolor: 'background.paper' }}
+        sx={{ width: '100%', height: '100%', bgcolor: 'background.paper' }}
         component="nav"
         aria-labelledby="nested-list-subheader"
         subheader={
@@ -48,12 +48,15 @@ const SettingsPage: NextPage = () => {
           <ListItemIcon>
             <DarkModeIcon />
           </ListItemIcon>
-          <ListItemText primary={t('common.darkMode')} /> {darkModeState.mode}
+          <ListItemText color="main" primary={t('common.darkMode')} />
           <MaterialUISwitch
+            checked={appState.mode === 'dark'}
             onChange={() => {
-              console.log('darkModeActions', darkModeActions)
-              if (darkModeState.mode === 'dark') darkModeActions.setLightMode()
-              else darkModeActions.setDarkMode()
+              if (appState.mode === 'dark') {
+                setLightMode()
+              } else {
+                setDarkMode()
+              }
             }}
           />
         </ListItem>

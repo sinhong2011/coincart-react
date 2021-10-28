@@ -6,11 +6,12 @@ import {
   RadioGroup,
 } from '@mui/material'
 import { useTranslation } from 'next-i18next'
-import { useRouter } from 'next/router'
+import { useAppConfig } from '../store/hooks'
+import { Languangs } from '../types/i18n'
 
 export const LanguageSelector = () => {
   const { i18n } = useTranslation()
-  const router = useRouter()
+  const { setLanguage } = useAppConfig()
 
   return (
     <FormControl component="fieldset" style={{ width: '100%' }}>
@@ -19,9 +20,7 @@ export const LanguageSelector = () => {
         name="controlled-radio-buttons-group"
         value={i18n.language}
         onChange={({ target }) => {
-          router.push(router.pathname, router.pathname, {
-            locale: target.value,
-          })
+          setLanguage(target.value as Languangs)
         }}>
         <FormControlLabel value="en" control={<Radio />} label="English" />
         <Divider />
