@@ -6,6 +6,9 @@ const darkTheme = createTheme({
     primary: {
       main: '#fff',
     },
+    text: {
+      primary: '#fff',
+    },
   },
 })
 

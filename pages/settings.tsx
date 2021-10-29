@@ -48,7 +48,7 @@ const SettingsPage: NextPage = () => {
           <ListItemIcon>
             <DarkModeIcon />
           </ListItemIcon>
-          <ListItemText color="main" primary={t('common.darkMode')} />
+          <ListItemText primary={t('common.darkMode')} />
           <MaterialUISwitch
             checked={appState.mode === 'dark'}
             onChange={() => {

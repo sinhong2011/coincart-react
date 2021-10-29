@@ -2,6 +2,7 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'next-i18next'
 import type { AppDispatch, RootState } from './index'
 import { appActions, SetLanguagePayload } from './app'
+
 export const useAppDispatch = () => useDispatch<AppDispatch>()
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
 

@@ -8,10 +8,14 @@ import { isBrowser } from 'utils/xCm'
 import { appWithTranslation } from 'next-i18next'
 import { ThemeProvider } from '@mui/material/styles'
 import { useRouter } from 'next/router'
+import { CssBaseline } from '@mui/material'
+import { QueryClient, QueryClientProvider } from 'react-query'
 import BottomNavBar from '../components/BottomNavBar'
 import { useAppConfig } from '../store/hooks'
 import { themes } from '../constant/theme'
 import { wrapper } from '../store/index'
+
+const queryClient = new QueryClient()
 
 function CoinCartApp({ Component, pageProps }: AppProps) {
   const [docLoader, setDocLoader] = useState<HTMLElement | null>(null)
@@ -28,7 +32,7 @@ function CoinCartApp({ Component, pageProps }: AppProps) {
 
       appConfig.initApp()
     }
-  }, [isBrowser()])
+  }, [])
 
   useEffect(() => {
     if (docLoader) {
@@ -67,10 +71,13 @@ function CoinCartApp({ Component, pageProps }: AppProps) {
       />
 
       <ThemeProvider theme={themes[appConfig.appState.mode]}>
-        <div className="_app-container">
-          <Component {...pageProps} />
-          <BottomNavBar />
-        </div>
+        <QueryClientProvider client={queryClient}>
+          <div className="_app-container">
+            <Component {...pageProps} />
+            <BottomNavBar />
+          </div>
+        </QueryClientProvider>
+        <CssBaseline />
       </ThemeProvider>
     </>
   )

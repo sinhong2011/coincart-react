@@ -1,14 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import router from 'next/router'
 import { Languangs } from '../types/i18n'
+import { CoincartSummaryData } from '../types/apiTypes'
 
 export type AppConfigState = {
   mode: 'dark' | 'light'
   language: Languangs
+  coincartSummary: CoincartSummaryData | null
 }
 
 const initialState: AppConfigState = {
   mode: 'light',
   language: 'tc',
+  coincartSummary: null,
 }
 
 export type SetLanguagePayload = AppConfigState['language']
@@ -18,12 +22,12 @@ const appSlice = createSlice({
   initialState,
   reducers: {
     initApp: state => {
-      const appConfig = JSON.parse(
-        localStorage.getItem('appConfig') || ''
-      ) as AppConfigState
+      const appConfigStr = localStorage.getItem('appConfig') || ''
 
-      if (appConfig) {
-        state.language = appConfig.language
+      if (appConfigStr) {
+        const appConfig = JSON.parse(appConfigStr) as AppConfigState
+
+        state.language = (router.locale as Languangs) || appConfig.language
         state.mode = appConfig.mode
       }
     },
@@ -44,6 +48,10 @@ const appSlice = createSlice({
         'appConfig',
         JSON.stringify({ ...state, language: payload })
       )
+    },
+
+    getCoincartSummary(state, { payload }: PayloadAction<CoincartSummaryData>) {
+      state.coincartSummary = payload
     },
   },
 })
