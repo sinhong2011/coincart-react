@@ -8,7 +8,12 @@
     "tabTitle": "Cart"
   },
   "dashboard": {
-    "tabTitle": "dashboard"
+    "tabTitle": "dashboard",
+    "transactions": "Transactions",
+    "collectedCoins": "Collected Coins",
+    "totalValue": "總面值",
+    "startDate": "計劃開始日記",
+    "endDate": "截至"
   },
   "settings": {
     "tabTitle": "settings"

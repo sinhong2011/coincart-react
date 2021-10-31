@@ -8,7 +8,7 @@ export const useCoincartSummaryService = () => {
   const appState = useAppSelector(state => state.app)
   const dispatch = useAppDispatch()
   const { error, isFetching, data, refetch } = useQuery(
-    'dashboard',
+    '',
     () => xApiClient.getDashboard(),
     {
       enabled: false,

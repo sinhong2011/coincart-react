@@ -8,7 +8,12 @@
     "tabTitle": "收銀车"
   },
   "dashboard": {
-    "tabTitle": "仪表盘"
+    "tabTitle": "仪表盘",
+    "transactions": "交易次數",
+    "collectedCoins": "已收集硬幣",
+    "totalValue": "總面值",
+    "startDate": "計劃開始日記",
+    "endDate": "截至"
   },
   "settings": {
     "tabTitle": "设定"

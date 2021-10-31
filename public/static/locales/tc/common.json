@@ -8,7 +8,12 @@
     "tabTitle": "神紗車"
   },
   "dashboard": {
-    "tabTitle": "儀錶盤"
+    "tabTitle": "儀錶盤",
+    "transactions": "交易次數",
+    "collectedCoins": "已收集硬幣",
+    "totalValue": "總面值",
+    "startDate": "計劃開始日記",
+    "endDate": "截至"
   },
   "settings": {
     "tabTitle": "設定"

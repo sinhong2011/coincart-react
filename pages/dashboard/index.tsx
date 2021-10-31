@@ -1,19 +1,15 @@
-import { Grid, Paper, Theme } from '@mui/material'
-import { styled } from '@mui/system'
+import { Grid } from '@mui/material'
+
 import type { NextPage } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { Languangs } from 'types/i18n'
 import { useEffect } from 'react'
-import { useCoincartSummaryService } from './service'
-
-const Item = styled(Paper)(({ theme }: { theme: Theme }) => ({
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}))
+import { useCoincartSummaryService } from 'pages/dashboard/service'
+import AnimatedCard from 'components/AnimatedCard'
+import { useTranslation } from 'next-i18next'
 
 const DashboardPage: NextPage = () => {
+  const { t } = useTranslation()
   const { getCoincartSummary, isFetching, coincartSummary } =
     useCoincartSummaryService()
 
@@ -25,11 +21,24 @@ const DashboardPage: NextPage = () => {
     <div className="page-container" style={{ padding: 20 }}>
       <Grid container spacing={2}>
         <Grid item xs={8}>
-          <Paper>{coincartSummary?.coins}</Paper>
+          <AnimatedCard
+            title={t('dashboard.transactions')}
+            content={coincartSummary?.transaction}
+          />
         </Grid>
-        <Grid item xs={4}></Grid>
-        <Grid item xs={4}></Grid>
-        <Grid item xs={8}></Grid>
+        <Grid item xs={4}>
+          <AnimatedCard
+            title={t('dashboard.collectedCoins')}
+            content={coincartSummary?.coins}
+          />
+        </Grid>
+        <Grid item xs={5}>
+          <AnimatedCard
+            title={t('dashboard.totalValue')}
+            content={coincartSummary?.totalCost}
+          />
+        </Grid>
+        <Grid item xs={7}></Grid>
       </Grid>
     </div>
   )
