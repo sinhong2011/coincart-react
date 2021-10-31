@@ -4,18 +4,23 @@ import { styled } from '@mui/material/styles'
 
 interface AnimatedCardProps {
   title: string
-  content?: number
+  countUp?: number
   duration?: number
   style?: React.CSSProperties
+  children?: React.ReactNode
+  countupPrefix?: string
 }
 
 const Item = styled(Paper)(
   ({ theme, style }: { theme: Theme; style: React.CSSProperties }) => ({
     ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    padding: theme.spacing(2),
+    textAlign: 'left',
     color: theme.palette.text.secondary,
-    height: 200,
+    height: 100,
     borderRadius: 15,
     ...style,
   })
@@ -23,15 +28,26 @@ const Item = styled(Paper)(
 
 const AnimatedCard: React.FC<AnimatedCardProps> = ({
   title,
-  content = 0,
+  countUp = 0,
   duration = 1,
   style = {},
+  children,
+  countupPrefix = '',
 }) => {
   const theme = useTheme()
   return (
     <Item theme={theme} style={style}>
-      <div>{title}</div>
-      <CountUp end={content} duration={duration} />
+      <div className="animatedcard-title">{title}</div>
+      <div className="animatedcard-content">
+        {countUp ? (
+          <CountUp
+            end={countUp}
+            duration={duration}
+            prefix={countupPrefix}></CountUp>
+        ) : (
+          children
+        )}
+      </div>
     </Item>
   )
 }

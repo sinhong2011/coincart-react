@@ -7,6 +7,7 @@ import { useEffect } from 'react'
 import { useCoincartSummaryService } from 'pages/dashboard/service'
 import AnimatedCard from 'components/AnimatedCard'
 import { useTranslation } from 'next-i18next'
+import dayjs from 'dayjs'
 
 const DashboardPage: NextPage = () => {
   const { t } = useTranslation()
@@ -20,22 +21,33 @@ const DashboardPage: NextPage = () => {
   return (
     <div className="page-container" style={{ padding: 20 }}>
       <Grid container spacing={2}>
-        <Grid item xs={8}>
+        <Grid item xs={6}>
+          <AnimatedCard title={t('dashboard.startDate')}>
+            {coincartSummary?.startDate}
+          </AnimatedCard>
+        </Grid>
+        <Grid item xs={6}>
+          <AnimatedCard title={t('dashboard.endDate')}>
+            {dayjs().format('YYYY-MM-DD')}
+          </AnimatedCard>
+        </Grid>
+        <Grid item xs={6}>
           <AnimatedCard
             title={t('dashboard.transactions')}
-            content={coincartSummary?.transaction}
+            countUp={coincartSummary?.transaction}
           />
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={6}>
           <AnimatedCard
             title={t('dashboard.collectedCoins')}
-            content={coincartSummary?.coins}
+            countUp={coincartSummary?.coins}
           />
         </Grid>
-        <Grid item xs={5}>
+        <Grid item xs={12}>
           <AnimatedCard
             title={t('dashboard.totalValue')}
-            content={coincartSummary?.totalCost}
+            countUp={coincartSummary?.totalCost}
+            countupPrefix="$"
           />
         </Grid>
         <Grid item xs={7}></Grid>
