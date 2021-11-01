@@ -1,18 +1,23 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import router from 'next/router'
 import { Languangs } from '../types/i18n'
-import { CoincartSummaryData } from '../types/apiTypes'
+import { CoincartSummaryData, CoinCartScheduleDetail } from '../types/apiTypes'
 
 export type AppConfigState = {
   mode: 'dark' | 'light'
   language: Languangs
   coincartSummary: CoincartSummaryData | null
+  coincartScheduleList: {
+    dataSize: number
+    records: CoinCartScheduleDetail[]
+  } | null
 }
 
 const initialState: AppConfigState = {
   mode: 'light',
   language: 'tc',
   coincartSummary: null,
+  coincartScheduleList: null,
 }
 
 export type SetLanguagePayload = AppConfigState['language']
@@ -52,6 +57,18 @@ const appSlice = createSlice({
 
     getCoincartSummary(state, { payload }: PayloadAction<CoincartSummaryData>) {
       state.coincartSummary = payload
+    },
+
+    getCoinCartSchedule(
+      state,
+      {
+        payload,
+      }: PayloadAction<{
+        dataSize: number
+        records: CoinCartScheduleDetail[]
+      }>
+    ) {
+      state.coincartScheduleList = payload
     },
   },
 })

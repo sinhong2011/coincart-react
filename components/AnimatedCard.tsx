@@ -1,7 +1,13 @@
-import { Paper, Theme, useTheme } from '@mui/material'
+import { Paper, Skeleton, Theme, useTheme } from '@mui/material'
 import CountUp from 'react-countup'
 import { styled } from '@mui/material/styles'
-
+import {
+  motion,
+  AnimationControls,
+  Target,
+  VariantLabels,
+  TargetAndTransition,
+} from 'framer-motion'
 interface AnimatedCardProps {
   title: string
   countUp?: number
@@ -9,6 +15,10 @@ interface AnimatedCardProps {
   style?: React.CSSProperties
   children?: React.ReactNode
   countupPrefix?: string
+  isLoading?: boolean
+  contentStyle?: React.CSSProperties
+  initial?: boolean | Target | VariantLabels
+  animate?: AnimationControls | TargetAndTransition | VariantLabels | boolean
 }
 
 const Item = styled(Paper)(
@@ -26,6 +36,13 @@ const Item = styled(Paper)(
   })
 )
 
+const SkeletonItem = () => (
+  <>
+    <Skeleton animation="wave"></Skeleton>
+    <Skeleton animation="wave"></Skeleton>
+  </>
+)
+
 const AnimatedCard: React.FC<AnimatedCardProps> = ({
   title,
   countUp = 0,
@@ -33,22 +50,34 @@ const AnimatedCard: React.FC<AnimatedCardProps> = ({
   style = {},
   children,
   countupPrefix = '',
+  isLoading,
+  contentStyle = {},
+  animate,
+  initial,
 }) => {
   const theme = useTheme()
   return (
-    <Item theme={theme} style={style}>
-      <div className="animatedcard-title">{title}</div>
-      <div className="animatedcard-content">
-        {countUp ? (
-          <CountUp
-            end={countUp}
-            duration={duration}
-            prefix={countupPrefix}></CountUp>
+    <motion.div initial={initial} animate={animate}>
+      <Item theme={theme} style={style}>
+        {isLoading ? (
+          <SkeletonItem />
         ) : (
-          children
+          <>
+            <div className="animatedcard-title">{title}</div>
+            <div className="animatedcard-content" style={contentStyle}>
+              {countUp ? (
+                <CountUp
+                  end={countUp}
+                  duration={duration}
+                  prefix={countupPrefix}></CountUp>
+              ) : (
+                children
+              )}
+            </div>
+          </>
         )}
-      </div>
-    </Item>
+      </Item>
+    </motion.div>
   )
 }
 

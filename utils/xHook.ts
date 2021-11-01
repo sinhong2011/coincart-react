@@ -1,3 +1,1 @@
-export const useClick = () => {
-  return 'a'
-}
+export const useClick = () => 'a'

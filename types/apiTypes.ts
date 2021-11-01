@@ -37,7 +37,7 @@ export type GetCoinCartRequest = {
   sortorder?: string
 }
 
-export type GetCoinCartResponse = ResponseFactory<CoinCartScheduleDetail>
+export type GetCoinCartResponse = ResponseFactory<CoinCartScheduleDetail[]>
 
 export type CoincartSummaryData = {
   startDate: string
