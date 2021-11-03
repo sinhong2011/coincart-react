@@ -56,10 +56,14 @@ function CoinCartApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>CoinCart</title>
+        <title>{process.env.REACT_APP_TITLE}</title>
         <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="/favicon.ico" />
         <meta name="theme-color" content="#317EFB" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, 
+user-scalable=no"></meta>
       </Head>
       <NextNprogress
         color="rgba(250,225,180,0.9)"

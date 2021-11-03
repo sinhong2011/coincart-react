@@ -21,7 +21,7 @@ class XApi extends XHttpClient {
 }
 
 const xApiClient = new XApi({
-  baseURL: 'https://api.hkma.gov.hk/public',
+  baseURL: process.env.REACT_APP_API_BASE,
   headers: {
     'content-type': 'application/json',
   },

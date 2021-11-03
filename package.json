@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next build & next start --reset-cache",
+    "dev": "env-cmd -e local next dev",
+    "build": "next lint --fix && env-cmd -e dev next build && env-cmd -e dev next export",
+    "start": "env-cmd -e dev next start",
     "lint": "next lint --fix",
+    "deploy": "node ./cli/deploy",
     "export": "next export",
     "prepare": "husky install",
     "pre-commit": "yarn lint && git add -A ."
@@ -22,6 +23,7 @@
     "axios": "^0.23.0",
     "dayjs": "^1.10.7",
     "framer-motion": "^5.0.0",
+    "leaflet": "^1.7.1",
     "next": "12.0.1",
     "next-i18next": "^8.9.0",
     "next-pwa": "^5.4.0",
@@ -31,11 +33,13 @@
     "react": "17.0.2",
     "react-countup": "^6.0.0",
     "react-dom": "17.0.2",
+    "react-leaflet": "^3.2.2",
     "react-query": "^3.28.0",
     "react-redux": "^7.2.6",
     "sass": "^1.43.4"
   },
   "devDependencies": {
+    "@types/leaflet": "^1.7.5",
     "@types/react": "17.0.32",
     "@types/redux-logger": "^3.0.9",
     "@types/yargs": "^17.0.4",
