@@ -27,7 +27,7 @@ const appSlice = createSlice({
   initialState,
   reducers: {
     initApp: state => {
-      const appConfigStr = localStorage.getItem('appConfig') || ''
+      const appConfigStr = window.localStorage.getItem('appConfig') || ''
 
       if (appConfigStr) {
         const appConfig = JSON.parse(appConfigStr) as AppConfigState
@@ -39,17 +39,23 @@ const appSlice = createSlice({
     setDarkMode: state => {
       const mode = 'dark'
       state.mode = mode
-      localStorage.setItem('appConfig', JSON.stringify({ ...state, mode }))
+      window.localStorage.setItem(
+        'appConfig',
+        JSON.stringify({ ...state, mode })
+      )
     },
     setLightMode: state => {
       const mode = 'light'
       state.mode = mode
-      localStorage.setItem('appConfig', JSON.stringify({ ...state, mode }))
+      window.localStorage.setItem(
+        'appConfig',
+        JSON.stringify({ ...state, mode })
+      )
     },
     setLanguage(state, { payload }: PayloadAction<SetLanguagePayload>) {
       state.language = payload
 
-      localStorage.setItem(
+      window.localStorage.setItem(
         'appConfig',
         JSON.stringify({ ...state, language: payload })
       )

@@ -1,21 +1,24 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import { defaultCenter } from '../constant/map'
+import { Coordinate } from '../types/common'
+import { getCurrentLocation, isBrowser } from './xCm'
+
+const currentPosition: Coordinate = isBrowser()
+  ? JSON.parse(window.localStorage.getItem('currentPosition')!)
+  : null
 
 export const useCurrentLocation = () => {
-  const [currLocation, setCurrLocation] = useState({
-    latitude: 22.3161008,
-    longitude: 114.1656078,
-  })
+  const [currLocation, setCurrLocation] = useState<Coordinate>(
+    currentPosition || defaultCenter
+  )
 
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(position => {
-      console.log('Latitude is :', position.coords.latitude)
-      console.log('Longitude is :', position.coords.longitude)
-      setCurrLocation({
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude,
-      })
-    })
-  }, [])
+  const initCurrentLocation = async () => {
+    const position = await getCurrentLocation()
+    console.log('position', position)
+    if (isBrowser())
+      window.localStorage.setItem('currentPosition', JSON.stringify(position))
+    setCurrLocation(position)
+  }
 
-  return { currLocation }
+  return { currLocation, initCurrentLocation }
 }

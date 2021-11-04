@@ -8,3 +8,8 @@ export type ActionMap<M extends { [index: string]: any }> = {
         payload: M[Key]
       }
 }
+
+export type Coordinate = {
+  latitude: number
+  longitude: number
+}
