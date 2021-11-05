@@ -1,16 +1,13 @@
 import { MapContainer, TileLayer } from 'react-leaflet'
-import 'leaflet/dist/leaflet.css'
-import { useEffect } from 'react'
-import { useCurrentLocation } from '../utils/xHook'
 
+import { useCurrentLocation } from '../utils/xHook'
+import { useHomePageService } from '../pages/home/service'
+import CoincartMarker from './CoincartMarker'
 const mapboxStyleUrl = `https://api.mapbox.com/styles/v1/niskan516/ckvja1tgj8qyb18rsvygg4v9z/tiles/256/{z}/{x}/{y}@2x?lang=tc&access_token=${process.env.MAPBOX_KEY}`
 
 const LeafleftMap = () => {
   const { currLocation } = useCurrentLocation()
-
-  useEffect(() => {
-    console.log('currLocation', currLocation)
-  }, [currLocation])
+  const { availableCoincarts } = useHomePageService()
 
   return (
     <MapContainer
@@ -30,11 +27,9 @@ const LeafleftMap = () => {
         attribution='Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="https://www.mapbox.com/">Mapbox</a>'
         url={mapboxStyleUrl}
       />
-      {/* <Marker position={[51.505, -0.09]}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-      </Marker> */}
+      {(availableCoincarts || []).map((coinCart, cIndex) => (
+        <CoincartMarker key={cIndex.toString()} coinCart={coinCart} />
+      ))}
     </MapContainer>
   )
 }

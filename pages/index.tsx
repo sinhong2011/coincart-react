@@ -20,8 +20,9 @@ const HomePage: NextPage = () => {
   const { initCurrentLocation } = useCurrentLocation()
 
   useEffect(() => {
-    getCoinCartSchedule()
     initCurrentLocation()
+
+    getCoinCartSchedule()
   }, [])
 
   useEffect(() => {
@@ -37,7 +38,12 @@ const HomePage: NextPage = () => {
       {/* <CoinCartTable/> */}
       <IconButton
         color="secondary"
-        style={{ position: 'fixed', zIndex: 1000, bottom: 60, right: 20 }}
+        style={{
+          position: 'fixed',
+          zIndex: 1000,
+          bottom: 'calc(env(safe-area-inset-bottom) + 100px)',
+          right: 10,
+        }}
         component="span"
         onClick={() => {
           initCurrentLocation()

@@ -2,10 +2,16 @@
   "common": {
     "language": "語言",
     "darkMode": "暗黑模式",
-    "settings": "设定"
+    "settings": "设定",
+    "to": "至"
   },
   "home": {
-    "tabTitle": "收銀车"
+    "tabTitle": "收銀车",
+    "cartNo": "收银车号码",
+    "address": "地址",
+    "duraction": "时间范围",
+    "district": "地区",
+    "remarks": "备注"
   },
   "dashboard": {
     "tabTitle": "仪表盘",

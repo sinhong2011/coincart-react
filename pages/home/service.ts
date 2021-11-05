@@ -1,10 +1,11 @@
 import { useQuery } from 'react-query'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'next-i18next'
 import { Languangs } from 'types/i18n'
 import { useAppSelector, useAppDispatch } from '../../store/hooks'
 import xApiClient from '../../api/xApi'
 import { appActions } from '../../store/app'
+import { CoinCartScheduleDetail } from '../../types/apiTypes'
 
 export const useHomePageService = () => {
   const appState = useAppSelector(state => state.app)
@@ -17,12 +18,19 @@ export const useHomePageService = () => {
       enabled: false,
     }
   )
+  const [availableCoincarts, setAvailableCoincarts] = useState<
+    CoinCartScheduleDetail[] | null
+  >(appState.coincartScheduleList)
 
   useEffect(() => {
-    console.log('data', data)
     if (!isFetching && data && data.result) {
       console.log('data.result', data.result)
-      dispatch(appActions.getCoinCartSchedule(data.result))
+      setAvailableCoincarts(
+        data.result.records.filter(
+          e => e.address !== null && e.latitude !== null && e.longitude !== null
+        )
+      )
+      dispatch(appActions.getCoinCartSchedule(data.result.records))
     }
   }, [isFetching, data])
 
@@ -35,6 +43,7 @@ export const useHomePageService = () => {
     getCoinCartSchedule,
     isFetching,
     error,
+    availableCoincarts,
     coincartScheduleList: appState.coincartScheduleList,
   }
 }

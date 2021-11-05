@@ -14,7 +14,7 @@ export const useCurrentLocation = () => {
 
   const initCurrentLocation = async () => {
     const position = await getCurrentLocation()
-    console.log('position', position)
+
     if (isBrowser())
       window.localStorage.setItem('currentPosition', JSON.stringify(position))
     setCurrLocation(position)

@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -31,10 +27,8 @@
     "__mocks__/fileMock.js",
     "pages/_app.tsx",
     "cli/env.js",
-    "cli/deploy.js"
+    "cli/deploy.js",
+    "types/*.d.ts"
   ],
-  "exclude": [
-    "node_modules",
-    "./dist/**/*"
-  ]
+  "exclude": ["node_modules", "./dist/**/*"]
 }

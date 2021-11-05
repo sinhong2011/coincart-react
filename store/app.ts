@@ -7,10 +7,7 @@ export type AppConfigState = {
   mode: 'dark' | 'light'
   language: Languangs
   coincartSummary: CoincartSummaryData | null
-  coincartScheduleList: {
-    dataSize: number
-    records: CoinCartScheduleDetail[]
-  } | null
+  coincartScheduleList: CoinCartScheduleDetail[] | null
 }
 
 const initialState: AppConfigState = {
@@ -67,12 +64,7 @@ const appSlice = createSlice({
 
     getCoinCartSchedule(
       state,
-      {
-        payload,
-      }: PayloadAction<{
-        dataSize: number
-        records: CoinCartScheduleDetail[]
-      }>
+      { payload }: PayloadAction<CoinCartScheduleDetail[]>
     ) {
       state.coincartScheduleList = payload
     },

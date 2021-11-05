@@ -1,0 +1,27 @@
+{
+  "common": {
+    "language": "Language",
+    "darkMode": "Dark Mode",
+    "settings": "Settings",
+    "to": "to"
+  },
+  "home": {
+    "tabTitle": "Cart",
+    "cartNo": "Cart No.",
+    "address": "Address",
+    "duraction": "Duration",
+    "district": "District",
+    "remarks": "Rehjghjghjmarks"
+  },
+  "dashboard": {
+    "tabTitle": "dashboard",
+    "transactions": "Transactions",
+    "collectedCoins": "Collected coins",
+    "totalValue": "Aggregate par value",
+    "startDate": "Plan starting date",
+    "endDate": "As of"
+  },
+  "settings": {
+    "tabTitle": "settings"
+  }
+}

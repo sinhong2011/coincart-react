@@ -2,10 +2,16 @@
   "common": {
     "language": "語言",
     "darkMode": "暗黑模式",
-    "settings": "設定"
+    "settings": "設定",
+    "to": "至"
   },
   "home": {
-    "tabTitle": "神紗車"
+    "tabTitle": "神紗車",
+    "cartNo": "收銀車號碼",
+    "address": "地址",
+    "duration": "時間範圍",
+    "district": "地區",
+    "remarks": "備註"
   },
   "dashboard": {
     "tabTitle": "儀錶盤",

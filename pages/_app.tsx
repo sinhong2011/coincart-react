@@ -1,11 +1,12 @@
 import '../styles/globals.css'
 import '../styles/main.scss'
+import 'leaflet/dist/leaflet.css'
 import NextNprogress from 'nextjs-progressbar'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import { isBrowser } from 'utils/xCm'
-import { appWithTranslation } from 'next-i18next'
+import { i18n, appWithTranslation } from 'next-i18next'
 import { ThemeProvider } from '@mui/material/styles'
 import { useRouter } from 'next/router'
 import { CssBaseline } from '@mui/material'
@@ -31,6 +32,8 @@ function CoinCartApp({ Component, pageProps }: AppProps) {
       setDocLoader(document.getElementById('document_loader'))
 
       appConfig.initApp()
+
+      window.i18n = i18n
     }
   }, [])
 
@@ -63,7 +66,8 @@ function CoinCartApp({ Component, pageProps }: AppProps) {
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1.0, 
-user-scalable=no"></meta>
+user-scalable=no"
+        />
       </Head>
       <NextNprogress
         color="rgba(250,225,180,0.9)"
