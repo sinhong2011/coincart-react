@@ -7,7 +7,7 @@ export type ResponseFactory<TRecords> = {
     err_msg: string
   }
   result: {
-    dataSize: number
+    datasize: number
     records: TRecords
   }
 }

@@ -8,7 +8,7 @@ const mapboxStyleUrl = `https://api.mapbox.com/styles/v1/niskan516/ckvja1tgj8qyb
 const LeafleftMap = () => {
   const { currLocation } = useCurrentLocation()
   const { availableCoincarts } = useHomePageService()
-
+  console.log('availableCoincarts', availableCoincarts)
   return (
     <MapContainer
       style={{
@@ -21,7 +21,7 @@ const LeafleftMap = () => {
         overflow: 'hidden',
       }}
       center={[currLocation.latitude, currLocation.longitude]}
-      zoom={17}
+      zoom={12}
       scrollWheelZoom={false}>
       <TileLayer
         attribution='Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="https://www.mapbox.com/">Mapbox</a>'

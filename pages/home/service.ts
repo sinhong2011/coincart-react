@@ -23,16 +23,20 @@ export const useHomePageService = () => {
   >(appState.coincartScheduleList)
 
   useEffect(() => {
-    if (!isFetching && data && data.result) {
+    if (appState.coincartScheduleList) return
+
+    if (!isFetching && data && data?.result?.datasize > 0) {
+      const arr = data.result.records.slice(0)
       console.log('data.result', data.result)
       setAvailableCoincarts(
-        data.result.records.filter(
-          e => e.address !== null && e.latitude !== null && e.longitude !== null
-        )
+        arr.filter((e, index) => {
+          console.log(index, !!e.address && !!e.latitude && !!e.longitude)
+          return !!e.address && !!e.latitude && !!e.longitude
+        })
       )
-      dispatch(appActions.getCoinCartSchedule(data.result.records))
+      dispatch(appActions.getCoinCartSchedule(arr))
     }
-  }, [isFetching, data])
+  }, [isFetching, data, appState.coincartScheduleList])
 
   const getCoinCartSchedule = () => {
     if (appState.coincartScheduleList) return
