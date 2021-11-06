@@ -7,6 +7,9 @@ import xApiClient from '../../api/xApi'
 import { appActions } from '../../store/app'
 import { CoinCartScheduleDetail } from '../../types/apiTypes'
 
+const getFilterCoincartList = (list: CoinCartScheduleDetail[]) =>
+  list.filter(e => !!e.address && !!e.latitude && !!e.longitude)
+
 export const useHomePageService = () => {
   const appState = useAppSelector(state => state.app)
   const dispatch = useAppDispatch()
@@ -20,20 +23,16 @@ export const useHomePageService = () => {
   )
   const [availableCoincarts, setAvailableCoincarts] = useState<
     CoinCartScheduleDetail[] | null
-  >(appState.coincartScheduleList)
+  >(getFilterCoincartList(appState.coincartScheduleList || []))
 
   useEffect(() => {
     if (appState.coincartScheduleList) return
 
     if (!isFetching && data && data?.result?.datasize > 0) {
       const arr = data.result.records.slice(0)
-      console.log('data.result', data.result)
-      setAvailableCoincarts(
-        arr.filter((e, index) => {
-          console.log(index, !!e.address && !!e.latitude && !!e.longitude)
-          return !!e.address && !!e.latitude && !!e.longitude
-        })
-      )
+
+      setAvailableCoincarts(getFilterCoincartList(arr))
+
       dispatch(appActions.getCoinCartSchedule(arr))
     }
   }, [isFetching, data, appState.coincartScheduleList])
