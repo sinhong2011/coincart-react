@@ -13,3 +13,11 @@ export type Coordinate = {
   latitude: number
   longitude: number
 }
+
+export type DistrictOption = {
+  label: string
+  value: string
+  color?: string
+  isFixed?: boolean
+  isDisabeld?: boolean
+}

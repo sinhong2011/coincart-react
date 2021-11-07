@@ -1,5 +1,5 @@
 import { MapContainer, TileLayer } from 'react-leaflet'
-
+import React from 'react'
 import { useCurrentLocation } from '../utils/xHook'
 import { useHomePageService } from '../pages/home/service'
 import CoincartMarker from './CoincartMarker'
@@ -8,7 +8,7 @@ const mapboxStyleUrl = `https://api.mapbox.com/styles/v1/niskan516/ckvja1tgj8qyb
 const LeafleftMap = () => {
   const { currLocation } = useCurrentLocation()
   const { availableCoincarts } = useHomePageService()
-  console.log('availableCoincarts', availableCoincarts)
+
   return (
     <MapContainer
       style={{

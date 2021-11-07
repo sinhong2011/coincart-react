@@ -1,15 +1,20 @@
 import type { NextPage } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
-import { IconButton } from '@mui/material'
-import { Navigation } from '@mui/icons-material'
-import { Languangs } from '../types/i18n'
-import { useHomePageService } from './home/service'
-import { useCurrentLocation } from '../utils/xHook'
+import { Languangs } from 'types/i18n'
+import { useHomePageService } from 'pages/home/service'
+import { useCurrentLocation } from 'utils/xHook'
+import { OnChangeValue, ActionMeta } from 'react-select'
+import { DistrictOption } from 'types/common'
 
 const HomePage: NextPage = () => {
-  const { getCoinCartSchedule } = useHomePageService()
+  const {
+    getCoinCartSchedule,
+    districtOptions,
+    selectedDistrics,
+    setSelectedDistrics,
+  } = useHomePageService()
   const [isBrowser, setIsBrowser] = useState(false)
 
   const Map = dynamic(
@@ -33,13 +38,38 @@ const HomePage: NextPage = () => {
     return null
   }
 
+  const onSelectedDistricChanget = (
+    value: OnChangeValue<DistrictOption[], true>,
+    actionMeta: ActionMeta<DistrictOption[]>
+  ) => {
+    console.log('value', value)
+    setSelectedDistrics(value)
+  }
+
   return (
-    <div className="page-container" style={{ position: 'relative' }}>
-      {/* <CoinCartTable/> */}
+    <div className="page-container" style={{}}>
+      {/* <div
+        style={{
+          position: 'absolute',
+          zIndex: 1000,
+          top: 'calc(env(safe-area-inset-top) + 12px)',
+          left: 60,
+          width: '80%',
+        }}>
+        <Select
+          name="districs"
+          isMulti
+          value={selectedDistrics}
+          onChange={onSelectedDistricChanget}
+          options={districtOptions}
+          className="basic-multi-select"
+          classNamePrefix="select"
+        />
+      </div>
       <IconButton
         color="secondary"
         style={{
-          position: 'fixed',
+          position: 'absolute',
           zIndex: 1000,
           bottom: 'calc(env(safe-area-inset-bottom) + 100px)',
           right: 10,
@@ -49,7 +79,7 @@ const HomePage: NextPage = () => {
           initCurrentLocation()
         }}>
         <Navigation />
-      </IconButton>
+      </IconButton> */}
       <Map />
     </div>
   )
