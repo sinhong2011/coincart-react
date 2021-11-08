@@ -17,7 +17,7 @@ export const useCurrentLocation = () => {
 
     if (isBrowser())
       window.localStorage.setItem('currentPosition', JSON.stringify(position))
-    setCurrLocation(position)
+    setCurrLocation(position || defaultCenter)
   }
 
   return { currLocation, initCurrentLocation }

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "env-cmd -e local next dev",
-    "build": "next lint --fix && env-cmd -e dev next build && env-cmd -e dev next export",
+    "build": "next lint --fix && env-cmd -e local next build",
     "start": "env-cmd -e dev next start",
     "lint": "next lint --fix",
     "deploy": "node ./cli/deploy",
@@ -24,7 +24,7 @@
     "dayjs": "^1.10.7",
     "framer-motion": "^5.0.0",
     "leaflet": "^1.7.1",
-    "next": "12.0.1",
+    "next": "12.0.3",
     "next-i18next": "^8.9.0",
     "next-pwa": "^5.4.0",
     "next-redux-wrapper": "^7.0.5",

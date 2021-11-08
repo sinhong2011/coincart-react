@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query'
 import { useEffect } from 'react'
 import { useAppSelector, useAppDispatch } from '../../store/hooks'
-import xApiClient from '../../api/xApi'
+import xApiClient from '../xApi'
 import { appActions } from '../../store/app'
 
 export const useCoincartSummaryService = () => {

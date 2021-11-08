@@ -3,10 +3,16 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import React, { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Languangs } from 'types/i18n'
-import { useHomePageService } from 'pages/home/service'
+import { useHomePageService } from 'api/service/home'
 import { useCurrentLocation } from 'utils/xHook'
-import { OnChangeValue, ActionMeta } from 'react-select'
-import { DistrictOption } from 'types/common'
+import Select from 'react-select'
+import CoincartIDetailListDrawer from '../components/CoincartIDetailListDrawer'
+import { DistrictOption } from '../types/common'
+
+const Map = dynamic(
+  () => import('components/LeafletMap'), // replace '@components/map' with your component's location
+  { ssr: false } // This line is important. It's what prevents server-side render
+)
 
 const HomePage: NextPage = () => {
   const {
@@ -16,11 +22,6 @@ const HomePage: NextPage = () => {
     setSelectedDistrics,
   } = useHomePageService()
   const [isBrowser, setIsBrowser] = useState(false)
-
-  const Map = dynamic(
-    () => import('components/LeafleftMap'), // replace '@components/map' with your component's location
-    { ssr: false } // This line is important. It's what prevents server-side render
-  )
 
   const { initCurrentLocation } = useCurrentLocation()
 
@@ -38,17 +39,9 @@ const HomePage: NextPage = () => {
     return null
   }
 
-  const onSelectedDistricChanget = (
-    value: OnChangeValue<DistrictOption[], true>,
-    actionMeta: ActionMeta<DistrictOption[]>
-  ) => {
-    console.log('value', value)
-    setSelectedDistrics(value)
-  }
-
   return (
     <div className="page-container" style={{}}>
-      {/* <div
+      <div
         style={{
           position: 'absolute',
           zIndex: 1000,
@@ -60,26 +53,17 @@ const HomePage: NextPage = () => {
           name="districs"
           isMulti
           value={selectedDistrics}
-          onChange={onSelectedDistricChanget}
-          options={districtOptions}
+          onChange={newValue => {
+            setSelectedDistrics(newValue as DistrictOption[])
+          }}
+          options={districtOptions || []}
           className="basic-multi-select"
           classNamePrefix="select"
+          autoFocus={false}
+          isSearchable={false}
         />
       </div>
-      <IconButton
-        color="secondary"
-        style={{
-          position: 'absolute',
-          zIndex: 1000,
-          bottom: 'calc(env(safe-area-inset-bottom) + 100px)',
-          right: 10,
-        }}
-        component="span"
-        onClick={() => {
-          initCurrentLocation()
-        }}>
-        <Navigation />
-      </IconButton> */}
+      <CoincartIDetailListDrawer />
       <Map />
     </div>
   )
