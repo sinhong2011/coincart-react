@@ -32,12 +32,14 @@ export const useHomePageService = () => {
     if (appState.coincartScheduleList) return
 
     if (!isFetching && data && data?.result?.datasize > 0) {
-      const arr = data.result.records.slice(0)
+      const arr = data.result.records
+        .slice(0)
+        .map((e, index) => ({ ...e, index }))
 
       const districts = Array.from(
         new Set(getFilterCoincartList(arr).map(e => e.district))
       )
-      console.log('arr', arr)
+
       appConfig.setDistrictOptions(districts.map(e => ({ label: e, value: e })))
 
       appConfig.setAvailableCoincarts(getFilterCoincartList(arr))

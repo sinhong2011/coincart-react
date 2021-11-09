@@ -73,7 +73,6 @@ const LeafletMap = () => {
   return (
     <div className="map-container">
       {map && <LocateButton map={map} />}
-
       {displayMap}
     </div>
   )

@@ -172,13 +172,13 @@ const CoincartIDetailListDrawer = () => {
             }}>
             {availableCoincarts?.length || 0} results
             <IconButton
-              color="primary"
+              color="default"
               aria-label="upload picture"
               component="span"
               onClick={() => {
                 getCoinCartSchedule()
               }}>
-              <Refresh />
+              {open && <Refresh />}
             </IconButton>
           </Typography>
         </StyledBox>
