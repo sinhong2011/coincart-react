@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import router from 'next/router'
-import { DistrictOption } from 'types/common'
 import { Languangs } from '../types/i18n'
 import { CoincartSummaryData, CoinCartScheduleDetail } from '../types/apiTypes'
 
@@ -9,8 +8,9 @@ export type AppConfigState = {
   language: Languangs
   coincartSummary: CoincartSummaryData | null
   coincartScheduleList: CoinCartScheduleDetail[] | null
-  districtOptions: DistrictOption[] | null
+  districtOptions: string[] | null
   availableCoincarts: CoinCartScheduleDetail[] | null
+  mobileOpen: boolean
 }
 
 const initialState: AppConfigState = {
@@ -20,6 +20,7 @@ const initialState: AppConfigState = {
   coincartScheduleList: null,
   districtOptions: null,
   availableCoincarts: null,
+  mobileOpen: false,
 }
 
 export type SetLanguagePayload = AppConfigState['language']
@@ -73,7 +74,7 @@ const appSlice = createSlice({
     ) {
       state.coincartScheduleList = payload
     },
-    setDistrictOptions(state, { payload }: PayloadAction<DistrictOption[]>) {
+    setDistrictOptions(state, { payload }: PayloadAction<string[]>) {
       state.districtOptions = payload
     },
     setAvailableCoincarts(
@@ -81,6 +82,9 @@ const appSlice = createSlice({
       { payload }: PayloadAction<CoinCartScheduleDetail[]>
     ) {
       state.availableCoincarts = payload
+    },
+    setMobileOpen(state, { payload }: PayloadAction<boolean>) {
+      state.mobileOpen = payload
     },
   },
 })

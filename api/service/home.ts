@@ -5,7 +5,6 @@ import { Languangs } from 'types/i18n'
 import { useAppSelector, useAppConfig } from 'store/hooks'
 import xApiClient from 'api/xApi'
 import { CoinCartScheduleDetail } from 'types/apiTypes'
-import { DistrictOption } from 'types/common'
 
 const getFilterCoincartList = (list: CoinCartScheduleDetail[] = []) =>
   Array.isArray(list)
@@ -26,7 +25,7 @@ export const useHomePageService = () => {
     }
   )
 
-  const [selectedDistrics, setSelectedDistrics] = useState<DistrictOption[]>([])
+  const [selectedDistrics, setSelectedDistrics] = useState<string>('')
 
   useEffect(() => {
     if (appState.coincartScheduleList) return
@@ -40,7 +39,7 @@ export const useHomePageService = () => {
         new Set(getFilterCoincartList(arr).map(e => e.district))
       )
 
-      appConfig.setDistrictOptions(districts.map(e => ({ label: e, value: e })))
+      appConfig.setDistrictOptions(districts)
 
       appConfig.setAvailableCoincarts(getFilterCoincartList(arr))
 
@@ -56,9 +55,7 @@ export const useHomePageService = () => {
     } else {
       const filteredList = getFilterCoincartList(
         appState.coincartScheduleList || []
-      )?.filter(coincart =>
-        selectedDistrics.some(e => e.value === coincart.district)
-      )
+      )?.filter(coincart => coincart.district === selectedDistrics)
 
       appConfig.setAvailableCoincarts(filteredList)
     }

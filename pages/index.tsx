@@ -5,9 +5,8 @@ import dynamic from 'next/dynamic'
 import { Languangs } from 'types/i18n'
 import { useHomePageService } from 'api/service/home'
 import { useCurrentLocation } from 'utils/xHook'
-import Select from 'react-select'
+
 import CoincartIDetailListDrawer from '../components/CoincartIDetailListDrawer'
-import { DistrictOption } from '../types/common'
 
 const Map = dynamic(
   () => import('components/LeafletMap'), // replace '@components/map' with your component's location
@@ -15,12 +14,7 @@ const Map = dynamic(
 )
 
 const HomePage: NextPage = () => {
-  const {
-    getCoinCartSchedule,
-    districtOptions,
-    selectedDistrics,
-    setSelectedDistrics,
-  } = useHomePageService()
+  const { getCoinCartSchedule } = useHomePageService()
   const [isBrowser, setIsBrowser] = useState(false)
 
   const { initCurrentLocation } = useCurrentLocation()
@@ -48,21 +42,7 @@ const HomePage: NextPage = () => {
           top: 'calc(env(safe-area-inset-top) + 12px)',
           left: 60,
           width: '80%',
-        }}>
-        <Select
-          name="districs"
-          isMulti
-          value={selectedDistrics}
-          onChange={newValue => {
-            setSelectedDistrics(newValue as DistrictOption[])
-          }}
-          options={districtOptions || []}
-          className="basic-multi-select"
-          classNamePrefix="select"
-          autoFocus={false}
-          isSearchable={false}
-        />
-      </div>
+        }}></div>
       <CoincartIDetailListDrawer />
       <Map />
     </div>

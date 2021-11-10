@@ -2,7 +2,6 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'next-i18next'
 import type { AppDispatch, RootState } from './index'
 import { appActions, SetLanguagePayload } from './app'
-import { DistrictOption } from '../types/common'
 import { CoinCartScheduleDetail } from '../types/apiTypes'
 
 export const useAppDispatch = () => useDispatch<AppDispatch>()
@@ -13,9 +12,10 @@ type AppConfigActions = {
   setDarkMode: () => void
   setLightMode: () => void
   setLanguage: (lang: SetLanguagePayload) => void
-  setDistrictOptions: (optionList: DistrictOption[]) => void
+  setDistrictOptions: (optionList: string[]) => void
   getCoinCartSchedule: (arr: CoinCartScheduleDetail[]) => void
   setAvailableCoincarts: (arr: CoinCartScheduleDetail[]) => void
+  setMobileOpen: (mobileOpen: boolean) => void
 }
 
 export const useAppConfig = () => {
@@ -45,6 +45,9 @@ export const useAppConfig = () => {
     },
     setAvailableCoincarts: arr => {
       dispatch(appActions.setAvailableCoincarts(arr))
+    },
+    setMobileOpen: mobileOpen => {
+      dispatch(appActions.setMobileOpen(mobileOpen))
     },
   }
 

@@ -1,4 +1,4 @@
-import { MapContainer, TileLayer } from 'react-leaflet'
+import { MapContainer, TileLayer, ZoomControl } from 'react-leaflet'
 import React, { useState, useCallback } from 'react'
 
 import { Map as LeafletMapPorps } from 'leaflet'
@@ -21,8 +21,8 @@ const LocateButton = ({ map }: { map: LeafletMapPorps }) => {
       style={{
         position: 'absolute',
         zIndex: 1000,
-        bottom: 'calc(env(safe-area-inset-bottom) + 100px)',
-        right: 10,
+        bottom: 'calc(env(safe-area-inset-bottom) + 170px)',
+        right: 6,
       }}
       component="span"
       onClick={onClick}>
@@ -55,11 +55,13 @@ const LeafletMap = () => {
         center={[currLocation.latitude, currLocation.longitude]}
         zoom={12}
         scrollWheelZoom={false}
+        zoomControl={false}
         whenCreated={setMap}>
         <TileLayer
           attribution='Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="https://www.mapbox.com/">Mapbox</a>'
           url={mapboxStyleUrl}
         />
+        <ZoomControl position="bottomright"></ZoomControl>
         {(availableCoincarts || fullCoincartScheduleList || []).map(
           (coinCart, cIndex) => (
             <CoincartMarker key={cIndex.toString()} coinCart={coinCart} />

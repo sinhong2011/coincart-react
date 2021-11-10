@@ -14,6 +14,8 @@ import { Refresh } from '@mui/icons-material'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import CartIcon from 'public/delivery-truck-delivery-svgrepo-com.svg'
 import { isBrowser } from '../utils/xCm'
+import { GlobalDialogContext } from '../context/globaldialog/slice'
+import { CartDetail, Content } from './CoinCartDetail'
 
 const StyledBox = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'light' ? '#fff' : grey[800],
@@ -41,29 +43,10 @@ const Root = styled('div')(({ theme }) => ({
 
 const drawerBleeding = 56
 
-type ContentProps = {
-  title: string
-  children: React.ReactNode
-  contentCompType?: React.ElementType
-}
-const Content = ({
-  title,
-  children,
-  contentCompType = 'div',
-}: ContentProps): JSX.Element => (
-  <div>
-    <Typography
-      variant="subtitle2"
-      component="span">{`${title} : `}</Typography>
-    <Typography variant="caption" component={contentCompType}>
-      {children}
-    </Typography>
-  </div>
-)
-
 const CoincartList = () => {
   const { availableCoincarts, isFetching } = useHomePageService()
   const { t } = useTranslation()
+  const [, { openGlobalDialog }] = React.useContext(GlobalDialogContext)
 
   return (
     <List component="nav">
@@ -90,7 +73,14 @@ const CoincartList = () => {
           </Box>
         ) : (
           <Card key={cIdx.toString()} sx={{ margin: 1 }}>
-            <CardActionArea style={{ display: 'flex' }}>
+            <CardActionArea
+              style={{ display: 'flex' }}
+              onClick={() => {
+                openGlobalDialog?.({
+                  title: 'Detail',
+                  content: <CartDetail coinCart={coinCart} />,
+                })
+              }}>
               <Box sx={{ padding: 1, flex: 1 }}>
                 <Content title={t('home.cartNo')} contentCompType="span">
                   {coinCart.cart_no}
@@ -105,11 +95,6 @@ const CoincartList = () => {
                 }}>
                 <CartIcon style={{ width: 35, height: 50 }} />
               </ListItemIcon>
-              {/* <Content title={t('home.duration')}>
-              {`${coinCart.start_date} ${t('common.to')} ${coinCart.end_date}`}
-            </Content>
-            <Content title={t('home.district')}> {coinCart.district}</Content>
-            <Content title={t('home.remarks')}> {coinCart.remarks}</Content> */}
             </CardActionArea>
           </Card>
         )

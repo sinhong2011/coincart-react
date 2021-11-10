@@ -30,7 +30,7 @@ const DashboardPage: NextPage = () => {
   }
 
   return (
-    <div className="page-container" style={{ padding: 20 }}>
+    <div className="page-container">
       <Grid container spacing={2}>
         <Grid item xs={6}>
           <AnimatedCard

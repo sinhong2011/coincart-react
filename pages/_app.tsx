@@ -14,6 +14,9 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import { useAppConfig } from '../store/hooks'
 import { themes } from '../constant/theme'
 import { wrapper } from '../store/index'
+import { GlobalDialogProvider } from '../context/globaldialog/provider'
+import MuiAppbar from '../components/MuiAppbar'
+import ResponsiveDrawer from '../components/ResponsiveDrawer'
 
 const queryClient = new QueryClient()
 
@@ -76,10 +79,14 @@ user-scalable=no"
 
       <ThemeProvider theme={themes[appConfig.appState.mode]}>
         <QueryClientProvider client={queryClient}>
-          <div className="_app-container">
-            <Component {...pageProps} />
-            {/* <BottomNavBar /> */}
-          </div>
+          <GlobalDialogProvider>
+            <div className="_app-container">
+              <ResponsiveDrawer />
+              <MuiAppbar />
+              <Component {...pageProps} />
+              {/* <BottomNavBar /> */}
+            </div>
+          </GlobalDialogProvider>
         </QueryClientProvider>
         <CssBaseline />
       </ThemeProvider>
