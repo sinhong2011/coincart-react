@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic'
 import { Languangs } from 'types/i18n'
 import { useHomePageService } from 'api/service/home'
 import { useCurrentLocation } from 'utils/xHook'
-
+import DistrictFilter from '../components/DistrictFilter'
 import CoincartIDetailListDrawer from '../components/CoincartIDetailListDrawer'
 
 const Map = dynamic(
@@ -35,16 +35,9 @@ const HomePage: NextPage = () => {
 
   return (
     <div className="page-container" style={{}}>
-      <div
-        style={{
-          position: 'absolute',
-          zIndex: 1000,
-          top: 'calc(env(safe-area-inset-top) + 12px)',
-          left: 60,
-          width: '80%',
-        }}></div>
-      <CoincartIDetailListDrawer />
+      <DistrictFilter />
       <Map />
+      <CoincartIDetailListDrawer />
     </div>
   )
 }

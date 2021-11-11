@@ -1,4 +1,7 @@
-declare module '*.svg' {
-  const content: any
-  export default content
+import { Map } from 'leaflet'
+
+declare global {
+  interface Window {
+    map: Map
+  }
 }

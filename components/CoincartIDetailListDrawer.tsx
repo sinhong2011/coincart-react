@@ -13,9 +13,10 @@ import Skeleton from '@mui/material/Skeleton'
 import { Refresh } from '@mui/icons-material'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import CartIcon from 'public/delivery-truck-delivery-svgrepo-com.svg'
+
 import { isBrowser } from '../utils/xCm'
-import { GlobalDialogContext } from '../context/globaldialog/slice'
-import { CartDetail, Content } from './CoinCartDetail'
+import { Content } from './CoinCartDetail'
+import { CoinCartScheduleDetail } from '../types/apiTypes'
 
 const StyledBox = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'light' ? '#fff' : grey[800],
@@ -41,12 +42,21 @@ const Root = styled('div')(({ theme }) => ({
 
 // type CoincartIDetailListDrawerProps = Record<never, string>
 
-const drawerBleeding = 56
+const drawerBleeding = 112
 
 const CoincartList = () => {
-  const { availableCoincarts, isFetching } = useHomePageService()
+  const { availableCoincarts, isFetching, setFocusedCoincart } =
+    useHomePageService()
   const { t } = useTranslation()
-  const [, { openGlobalDialog }] = React.useContext(GlobalDialogContext)
+
+  const onClickCard = React.useCallback(
+    (coinCart: CoinCartScheduleDetail) => {
+      if (!window.map) return
+      setFocusedCoincart(coinCart.index)
+      window.map.setView([coinCart.latitude, coinCart.longitude], 12)
+    },
+    [window.map]
+  )
 
   return (
     <List component="nav">
@@ -76,10 +86,7 @@ const CoincartList = () => {
             <CardActionArea
               style={{ display: 'flex' }}
               onClick={() => {
-                openGlobalDialog?.({
-                  title: 'Detail',
-                  content: <CartDetail coinCart={coinCart} />,
-                })
+                onClickCard(coinCart)
               }}>
               <Box sx={{ padding: 1, flex: 1 }}>
                 <Content title={t('home.cartNo')} contentCompType="span">
@@ -173,6 +180,9 @@ const CoincartIDetailListDrawer = () => {
             pb: 2,
             height: '100%',
             overflow: 'auto',
+            position: 'absolute',
+            bottom: drawerBleeding / 2,
+            width: '100%',
           }}>
           <CoincartList />
         </StyledBox>

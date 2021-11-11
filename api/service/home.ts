@@ -6,6 +6,8 @@ import { useAppSelector, useAppConfig } from 'store/hooks'
 import xApiClient from 'api/xApi'
 import { CoinCartScheduleDetail } from 'types/apiTypes'
 
+import { Map as LeafletMapProps } from 'leaflet'
+
 const getFilterCoincartList = (list: CoinCartScheduleDetail[] = []) =>
   Array.isArray(list)
     ? list.filter(e => !!e.address && !!e.latitude && !!e.longitude)
@@ -13,7 +15,7 @@ const getFilterCoincartList = (list: CoinCartScheduleDetail[] = []) =>
 
 export const useHomePageService = () => {
   const appState = useAppSelector(state => state.app)
-  // const dispatch = useAppDispatch()
+  const [map, setMap] = useState<LeafletMapProps | null>(null)
   const appConfig = useAppConfig()
 
   const { i18n } = useTranslation()
@@ -24,8 +26,6 @@ export const useHomePageService = () => {
       enabled: false,
     }
   )
-
-  const [selectedDistrics, setSelectedDistrics] = useState<string>('')
 
   useEffect(() => {
     if (appState.coincartScheduleList) return
@@ -48,18 +48,22 @@ export const useHomePageService = () => {
   }, [isFetching, data, appState.coincartScheduleList])
 
   useEffect(() => {
-    if (selectedDistrics.length <= 0) {
+    if (!appState.selectedDistrics) {
       appConfig.setAvailableCoincarts(
         getFilterCoincartList(appState.coincartScheduleList!)
       )
     } else {
       const filteredList = getFilterCoincartList(
         appState.coincartScheduleList || []
-      )?.filter(coincart => coincart.district === selectedDistrics)
+      )?.filter(coincart => coincart.district === appState.selectedDistrics)
 
       appConfig.setAvailableCoincarts(filteredList)
     }
-  }, [selectedDistrics])
+  }, [appState.selectedDistrics])
+
+  useEffect(() => {
+    if (map) window.map = map
+  }, [map])
 
   const getCoinCartSchedule = () => {
     // if (appState.coincartScheduleList) return
@@ -74,8 +78,12 @@ export const useHomePageService = () => {
     coincartScheduleList: appState.coincartScheduleList,
     districtOptions: appState.districtOptions,
     setAvailableCoincarts: appConfig.setAvailableCoincarts,
-    selectedDistrics,
-    setSelectedDistrics,
+    selectedDistrics: appState.selectedDistrics,
+    setSelectedDistrics: appConfig.setSelectedDistrics,
     fullCoincartScheduleList: appState.coincartScheduleList,
+    setMap,
+    map,
+    focusedCoincart: appState.focusedCoincart,
+    setFocusedCoincart: appConfig.setFocusedCoincart,
   }
 }

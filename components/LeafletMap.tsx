@@ -1,7 +1,7 @@
 import { MapContainer, TileLayer, ZoomControl } from 'react-leaflet'
-import React, { useState, useCallback } from 'react'
+import React, { useCallback } from 'react'
 
-import { Map as LeafletMapPorps } from 'leaflet'
+import { Map as LeafletMapProps } from 'leaflet'
 import { IconButton } from '@mui/material'
 import { Navigation } from '@mui/icons-material'
 import { useCurrentLocation } from '../utils/xHook'
@@ -9,7 +9,7 @@ import { useHomePageService } from '../api/service/home'
 import CoincartMarker from './CoincartMarker'
 const mapboxStyleUrl = `https://api.mapbox.com/styles/v1/niskan516/ckvja1tgj8qyb18rsvygg4v9z/tiles/256/{z}/{x}/{y}@2x?lang=tc&access_token=${process.env.MAPBOX_KEY}`
 
-const LocateButton = ({ map }: { map: LeafletMapPorps }) => {
+const LocateButton = ({ map }: { map: LeafletMapProps }) => {
   const { currLocation } = useCurrentLocation()
   const onClick = useCallback(() => {
     map.setView([currLocation.latitude, currLocation.longitude], 12)
@@ -21,7 +21,7 @@ const LocateButton = ({ map }: { map: LeafletMapPorps }) => {
       style={{
         position: 'absolute',
         zIndex: 1000,
-        bottom: 'calc(env(safe-area-inset-bottom) + 170px)',
+        bottom: 'calc(env(safe-area-inset-bottom) + 140px)',
         right: 6,
       }}
       component="span"
@@ -33,8 +33,8 @@ const LocateButton = ({ map }: { map: LeafletMapPorps }) => {
 
 const LeafletMap = () => {
   const { currLocation } = useCurrentLocation()
-  const { availableCoincarts, fullCoincartScheduleList } = useHomePageService()
-  const [map, setMap] = useState<LeafletMapPorps | null>(null)
+  const { availableCoincarts, fullCoincartScheduleList, map, setMap } =
+    useHomePageService()
 
   // useEffect(() => {
   //   console.log('availableCoincarts', availableCoincarts)
@@ -56,12 +56,14 @@ const LeafletMap = () => {
         zoom={12}
         scrollWheelZoom={false}
         zoomControl={false}
-        whenCreated={setMap}>
+        whenCreated={v => {
+          setMap(v)
+        }}>
         <TileLayer
           attribution='Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="https://www.mapbox.com/">Mapbox</a>'
           url={mapboxStyleUrl}
         />
-        <ZoomControl position="bottomright"></ZoomControl>
+        <ZoomControl position="topleft"></ZoomControl>
         {(availableCoincarts || fullCoincartScheduleList || []).map(
           (coinCart, cIndex) => (
             <CoincartMarker key={cIndex.toString()} coinCart={coinCart} />

@@ -11,6 +11,8 @@ export type AppConfigState = {
   districtOptions: string[] | null
   availableCoincarts: CoinCartScheduleDetail[] | null
   mobileOpen: boolean
+  selectedDistrics: string
+  focusedCoincart: number | null
 }
 
 const initialState: AppConfigState = {
@@ -21,6 +23,8 @@ const initialState: AppConfigState = {
   districtOptions: null,
   availableCoincarts: null,
   mobileOpen: false,
+  selectedDistrics: '',
+  focusedCoincart: null,
 }
 
 export type SetLanguagePayload = AppConfigState['language']
@@ -85,6 +89,12 @@ const appSlice = createSlice({
     },
     setMobileOpen(state, { payload }: PayloadAction<boolean>) {
       state.mobileOpen = payload
+    },
+    setSelectedDistrics(state, { payload }: PayloadAction<string>) {
+      state.selectedDistrics = payload
+    },
+    setFocusedCoincart(state, { payload }: PayloadAction<number>) {
+      state.focusedCoincart = payload
     },
   },
 })

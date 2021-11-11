@@ -15,8 +15,7 @@ import { useAppConfig } from '../store/hooks'
 import { themes } from '../constant/theme'
 import { wrapper } from '../store/index'
 import { GlobalDialogProvider } from '../context/globaldialog/provider'
-import MuiAppbar from '../components/MuiAppbar'
-import ResponsiveDrawer from '../components/ResponsiveDrawer'
+import BottomNavBar from '../components/BottomNavBar'
 
 const queryClient = new QueryClient()
 
@@ -81,10 +80,8 @@ user-scalable=no"
         <QueryClientProvider client={queryClient}>
           <GlobalDialogProvider>
             <div className="_app-container">
-              <ResponsiveDrawer />
-              <MuiAppbar />
               <Component {...pageProps} />
-              {/* <BottomNavBar /> */}
+              <BottomNavBar />
             </div>
           </GlobalDialogProvider>
         </QueryClientProvider>

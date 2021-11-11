@@ -21,6 +21,7 @@ export type CoinCartScheduleDetail = {
   latitude: number
   longitude: number
   remarks: string
+  index: number
 }
 
 export type GetCoinCartRequest = {

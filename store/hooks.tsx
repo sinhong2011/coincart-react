@@ -16,6 +16,8 @@ type AppConfigActions = {
   getCoinCartSchedule: (arr: CoinCartScheduleDetail[]) => void
   setAvailableCoincarts: (arr: CoinCartScheduleDetail[]) => void
   setMobileOpen: (mobileOpen: boolean) => void
+  setSelectedDistrics: (selectedDistrics: string) => void
+  setFocusedCoincart: (focusedCoincart: number) => void
 }
 
 export const useAppConfig = () => {
@@ -48,6 +50,12 @@ export const useAppConfig = () => {
     },
     setMobileOpen: mobileOpen => {
       dispatch(appActions.setMobileOpen(mobileOpen))
+    },
+    setSelectedDistrics: selectedDistrics => {
+      dispatch(appActions.setSelectedDistrics(selectedDistrics))
+    },
+    setFocusedCoincart: focusedCoincart => {
+      dispatch(appActions.setFocusedCoincart(focusedCoincart))
     },
   }
 

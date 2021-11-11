@@ -8,13 +8,11 @@ import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 
 import LanguageIcon from '@mui/icons-material/Language'
-import DarkModeIcon from '@mui/icons-material/DarkMode'
 import ExpandLess from '@mui/icons-material/ExpandLess'
 import ExpandMore from '@mui/icons-material/ExpandMore'
 
 import { Languangs } from 'types/i18n'
 import { Collapse, Divider, ListItem } from '@mui/material'
-import { MaterialUISwitch } from 'components/MaterialUISwitch'
 import { useTranslation } from 'next-i18next'
 import { LanguageSelector } from 'components/LanguageSelector'
 import { useAppConfig } from '../store/hooks'
@@ -44,7 +42,7 @@ const SettingsPage: NextPage = () => {
             {t('common.settings')}
           </ListSubheader>
         }>
-        <ListItem>
+        {/* <ListItem>
           <ListItemIcon>
             <DarkModeIcon />
           </ListItemIcon>
@@ -60,7 +58,7 @@ const SettingsPage: NextPage = () => {
             }}
           />
         </ListItem>
-        <Divider />
+        <Divider /> */}
         <ListItemButton onClick={handleClick}>
           <ListItemIcon>
             <LanguageIcon />

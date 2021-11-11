@@ -63,7 +63,7 @@ class MyDocument extends Document {
   .loader .info{ color: #fff; font-size: 7px; font-family: monospace; }
   .loader-pc.wait { animation: loader-pc-wait .7s linear infinite; }
   .loader { 
-    position: fixed; z-index: 1050; width: 100vw; height: 100vh; margin: 0; padding: 0; left: 0; top: 0; -webkit-font-smoothing: antialiased;
+    position: fixed; z-index: 999999; width: 100vw; height: 100vh; margin: 0; padding: 0; left: 0; top: 0; -webkit-font-smoothing: antialiased;
     background: #eee; text-align: center; box-shadow: inset 0 0 15vw rgba(0,0,0,0.7); will-change: opacity;
     opacity: 1; transition: opacity 250ms ease-in-out, transform 250ms ease-in-out; will-change: opacity;
   }
