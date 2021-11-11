@@ -15,8 +15,9 @@ import ListItemIcon from '@mui/material/ListItemIcon'
 import CartIcon from 'public/delivery-truck-delivery-svgrepo-com.svg'
 
 import { isBrowser } from '../utils/xCm'
-import { Content } from './CoinCartDetail'
+import { Content, CartDetail } from './CoinCartDetail'
 import { CoinCartScheduleDetail } from '../types/apiTypes'
+import { GlobalDialogContext } from '../context/globaldialog/slice'
 
 const StyledBox = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'light' ? '#fff' : grey[800],
@@ -45,9 +46,14 @@ const Root = styled('div')(({ theme }) => ({
 const drawerBleeding = 112
 
 const CoincartList = () => {
-  const { availableCoincarts, isFetching, setFocusedCoincart } =
-    useHomePageService()
+  const {
+    availableCoincarts,
+    isFetching,
+    setFocusedCoincart,
+    focusedCoincart,
+  } = useHomePageService()
   const { t } = useTranslation()
+  const [, { openGlobalDialog }] = React.useContext(GlobalDialogContext)
 
   const onClickCard = React.useCallback(
     (coinCart: CoinCartScheduleDetail) => {
@@ -82,7 +88,15 @@ const CoincartList = () => {
             </Box>
           </Box>
         ) : (
-          <Card key={cIdx.toString()} sx={{ margin: 1 }}>
+          <Card
+            key={cIdx.toString()}
+            sx={{
+              margin: 1,
+              background:
+                focusedCoincart === coinCart.index
+                  ? 'rgba(25, 118, 210, 0.08)'
+                  : undefined,
+            }}>
             <CardActionArea
               style={{ display: 'flex' }}
               onClick={() => {
@@ -92,6 +106,11 @@ const CoincartList = () => {
                 <Content title={t('home.cartNo')} contentCompType="span">
                   {coinCart.cart_no}
                 </Content>
+                <Content title={t('home.duration')}>
+                  {`${coinCart.start_date} ${t('common.to')} ${
+                    coinCart.end_date
+                  }`}
+                </Content>
                 <Content title={t('home.address')}> {coinCart.address}</Content>
               </Box>
               <ListItemIcon
@@ -100,7 +119,21 @@ const CoincartList = () => {
                   justifyContent: 'center',
                   alignItems: 'center',
                 }}>
-                <CartIcon style={{ width: 35, height: 50 }} />
+                <CartIcon
+                  onClick={() => {
+                    openGlobalDialog?.({
+                      title: 'Detail',
+                      content: (
+                        <CartDetail
+                          coinCart={coinCart}
+                          titleVariant="h6"
+                          childrenVariant="body1"
+                        />
+                      ),
+                    })
+                  }}
+                  style={{ width: 35, height: 50 }}
+                />
               </ListItemIcon>
             </CardActionArea>
           </Card>
