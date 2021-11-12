@@ -1,7 +1,8 @@
-import { Grid } from '@mui/material'
+// import { Grid } from '@mui/material'
+
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import type { NextPage } from 'next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { Languangs } from 'types/i18n'
 import { useEffect } from 'react'
 import { useCoincartSummaryService } from 'api/service/dashboard'
@@ -9,6 +10,7 @@ import AnimatedCard from 'components/AnimatedCard'
 import { useTranslation } from 'next-i18next'
 import dayjs from 'dayjs'
 import { Spring } from 'framer-motion'
+import { Box } from '@chakra-ui/react'
 
 const DashboardPage: NextPage = () => {
   const { t } = useTranslation()
@@ -31,8 +33,8 @@ const DashboardPage: NextPage = () => {
 
   return (
     <div className="page-container">
-      <Grid container spacing={2}>
-        <Grid item xs={6}>
+      <Box container spacing={2}>
+        <Box item xs={6}>
           <AnimatedCard
             isLoading={isFetching}
             title={t('dashboard.startDate')}
@@ -42,8 +44,8 @@ const DashboardPage: NextPage = () => {
             animate={{ opacity: 1, transition: { ...spring } }}>
             {coincartSummary?.startDate}
           </AnimatedCard>
-        </Grid>
-        <Grid item xs={6}>
+        </Box>
+        <Box item xs={6}>
           <AnimatedCard
             isLoading={isFetching}
             title={t('dashboard.endDate')}
@@ -57,8 +59,8 @@ const DashboardPage: NextPage = () => {
             }}>
             {dayjs().format('YYYY-MM-DD')}
           </AnimatedCard>
-        </Grid>
-        <Grid item xs={6}>
+        </Box>
+        <Box item xs={6}>
           <AnimatedCard
             isLoading={isFetching}
             title={t('dashboard.transactions')}
@@ -71,8 +73,8 @@ const DashboardPage: NextPage = () => {
               transition: { ...spring, delay: 0.4 },
             }}
           />
-        </Grid>
-        <Grid item xs={6}>
+        </Box>
+        <Box item xs={6}>
           <AnimatedCard
             isLoading={isFetching}
             title={t('dashboard.collectedCoins')}
@@ -85,8 +87,8 @@ const DashboardPage: NextPage = () => {
               transition: { ...spring, delay: 0.6 },
             }}
           />
-        </Grid>
-        <Grid item xs={12}>
+        </Box>
+        <Box item xs={12}>
           <AnimatedCard
             isLoading={isFetching}
             title={t('dashboard.totalValue')}
@@ -102,9 +104,9 @@ const DashboardPage: NextPage = () => {
               transition: { ...spring, delay: 0.8 },
             }}
           />
-        </Grid>
-        <Grid item xs={7}></Grid>
-      </Grid>
+        </Box>
+        <Box item xs={7}></Box>
+      </Box>
     </div>
   )
 }

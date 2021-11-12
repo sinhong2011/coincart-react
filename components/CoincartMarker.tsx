@@ -2,7 +2,7 @@ import { Marker } from 'react-leaflet'
 import L from 'leaflet'
 import * as React from 'react'
 import { CoinCartScheduleDetail } from '../types/apiTypes'
-import { GlobalDialogContext } from '../context/globaldialog/slice'
+import { BottomSheetContext } from '../context/bottom-sheet/slice'
 import { CartDetail } from './CoinCartDetail'
 import { useHomePageService } from '../api/service/home'
 
@@ -10,7 +10,7 @@ const getIcon = (className = '') =>
   L.icon({
     className,
     iconUrl: '/delivery-truck-delivery-svgrepo-com.svg',
-    iconSize: className === 'focused-coincart' ? [56, 56] : [32, 32],
+    iconSize: className === 'focused-coincart' ? [46, 46] : [32, 32],
   })
 
 type CoincartMarkerProps = {
@@ -18,7 +18,7 @@ type CoincartMarkerProps = {
 }
 
 const CoincartMarker = ({ coinCart }: CoincartMarkerProps): JSX.Element => {
-  const [, { openGlobalDialog }] = React.useContext(GlobalDialogContext)
+  const [, { openBottomSheet }] = React.useContext(BottomSheetContext)
   const { focusedCoincart, setFocusedCoincart } = useHomePageService()
 
   return (
@@ -29,16 +29,11 @@ const CoincartMarker = ({ coinCart }: CoincartMarkerProps): JSX.Element => {
       )}
       eventHandlers={{
         click: () => {
+          window?.map.setView([coinCart.latitude, coinCart.longitude], 14)
           setFocusedCoincart(coinCart.index)
-          openGlobalDialog?.({
+          openBottomSheet?.({
             title: 'Detail',
-            content: (
-              <CartDetail
-                coinCart={coinCart}
-                titleVariant="h6"
-                childrenVariant="body1"
-              />
-            ),
+            content: <CartDetail coinCart={coinCart} />,
           })
         },
       }}></Marker>

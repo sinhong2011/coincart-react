@@ -6,7 +6,6 @@ import { Languangs } from 'types/i18n'
 import { useHomePageService } from 'api/service/home'
 import { useCurrentLocation } from 'utils/xHook'
 import DistrictFilter from '../components/DistrictFilter'
-import CoincartIDetailListDrawer from '../components/CoincartIDetailListDrawer'
 
 const Map = dynamic(
   () => import('components/LeafletMap'), // replace '@components/map' with your component's location
@@ -37,7 +36,6 @@ const HomePage: NextPage = () => {
     <div className="page-container" style={{}}>
       <DistrictFilter />
       <Map />
-      <CoincartIDetailListDrawer />
     </div>
   )
 }

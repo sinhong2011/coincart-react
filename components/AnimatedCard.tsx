@@ -1,6 +1,5 @@
-import { Paper, Skeleton, Theme, useTheme } from '@mui/material'
 import CountUp from 'react-countup'
-import { styled } from '@mui/material/styles'
+import { Skeleton, Box } from '@chakra-ui/react'
 import {
   motion,
   AnimationControls,
@@ -21,21 +20,6 @@ interface AnimatedCardProps {
   animate?: AnimationControls | TargetAndTransition | VariantLabels | boolean
 }
 
-const Item = styled(Paper)(
-  ({ theme, style }: { theme: Theme; style: React.CSSProperties }) => ({
-    ...theme.typography.body2,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    padding: theme.spacing(2),
-    textAlign: 'left',
-    color: theme.palette.text.secondary,
-    height: 100,
-    borderRadius: 15,
-    ...style,
-  })
-)
-
 const SkeletonItem = () => (
   <>
     <Skeleton animation="wave"></Skeleton>
@@ -54,31 +38,28 @@ const AnimatedCard: React.FC<AnimatedCardProps> = ({
   contentStyle = {},
   animate,
   initial,
-}) => {
-  const theme = useTheme()
-  return (
-    <motion.div initial={initial} animate={animate}>
-      <Item theme={theme} style={style}>
-        {isLoading ? (
-          <SkeletonItem />
-        ) : (
-          <>
-            <div className="animatedcard-title">{title}</div>
-            <div className="animatedcard-content" style={contentStyle}>
-              {countUp ? (
-                <CountUp
-                  end={countUp}
-                  duration={duration}
-                  prefix={countupPrefix}></CountUp>
-              ) : (
-                children
-              )}
-            </div>
-          </>
-        )}
-      </Item>
-    </motion.div>
-  )
-}
+}) => (
+  <motion.div initial={initial} animate={animate}>
+    <Box style={style}>
+      {isLoading ? (
+        <SkeletonItem />
+      ) : (
+        <>
+          <div className="animatedcard-title">{title}</div>
+          <div className="animatedcard-content" style={contentStyle}>
+            {countUp ? (
+              <CountUp
+                end={countUp}
+                duration={duration}
+                prefix={countupPrefix}></CountUp>
+            ) : (
+              children
+            )}
+          </div>
+        </>
+      )}
+    </Box>
+  </motion.div>
+)
 
 export default AnimatedCard

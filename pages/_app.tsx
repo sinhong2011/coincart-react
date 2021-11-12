@@ -7,15 +7,15 @@ import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import { isBrowser } from 'utils/xCm'
 import { appWithTranslation } from 'next-i18next'
-import { ThemeProvider } from '@mui/material/styles'
 import { useRouter } from 'next/router'
-import { CssBaseline } from '@mui/material'
+
 import { QueryClient, QueryClientProvider } from 'react-query'
-import { useAppConfig } from '../store/hooks'
-import { themes } from '../constant/theme'
-import { wrapper } from '../store/index'
-import { GlobalDialogProvider } from '../context/globaldialog/provider'
-import BottomNavBar from '../components/BottomNavBar'
+import BottomNavBar from 'components/BottomNavBar'
+import { BottomSheetProvider } from 'context/bottom-sheet/provider'
+import { useAppConfig } from 'store/hooks'
+import { wrapper } from 'store/index'
+import 'react-spring-bottom-sheet/dist/style.css'
+import { ChakraProvider } from '@chakra-ui/react'
 
 const queryClient = new QueryClient()
 
@@ -76,17 +76,16 @@ user-scalable=no"
         showOnShallow
       />
 
-      <ThemeProvider theme={themes[appConfig.appState.mode]}>
+      <ChakraProvider>
         <QueryClientProvider client={queryClient}>
-          <GlobalDialogProvider>
+          <BottomSheetProvider>
             <div className="_app-container">
               <Component {...pageProps} />
               <BottomNavBar />
             </div>
-          </GlobalDialogProvider>
+          </BottomSheetProvider>
         </QueryClientProvider>
-        <CssBaseline />
-      </ThemeProvider>
+      </ChakraProvider>
     </>
   )
 }

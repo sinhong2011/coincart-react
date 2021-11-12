@@ -14,7 +14,7 @@
     "remarks": "Remarks"
   },
   "dashboard": {
-    "tabTitle": "dashboard",
+    "tabTitle": "Dashboard",
     "transactions": "Transactions",
     "collectedCoins": "Collected coins",
     "totalValue": "Aggregate par value",
@@ -22,6 +22,6 @@
     "endDate": "As of"
   },
   "settings": {
-    "tabTitle": "settings"
+    "tabTitle": "Settings"
   }
 }

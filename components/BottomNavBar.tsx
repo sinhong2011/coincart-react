@@ -1,70 +1,62 @@
-import { BottomNavigation, BottomNavigationAction, Paper } from '@mui/material'
-import { useRouter } from 'next/dist/client/router'
-import { useState } from 'react'
-import LocationOnIcon from '@mui/icons-material/LocationOn'
-import Dashboard from '@mui/icons-material/Dashboard'
-import Settings from '@mui/icons-material/Settings'
+import { Tabs, TabList, Tab, Icon, Box } from '@chakra-ui/react'
+import { AiOutlineHome, AiOutlineSetting } from 'react-icons/ai'
+import { MdDashboard } from 'react-icons/md'
 import { useTranslation } from 'next-i18next'
+import router from 'next/router'
 
 const NavItems = [
   {
     label: 'home.tabTitle',
-    icon: <LocationOnIcon />,
+    icon: AiOutlineHome,
     path: '/',
   },
   {
     label: 'dashboard.tabTitle',
-    icon: <Dashboard />,
+    icon: MdDashboard,
     path: '/dashboard',
   },
   {
     label: 'settings.tabTitle',
-    icon: <Settings />,
+    icon: AiOutlineSetting,
     path: '/settings',
   },
 ]
 
 const BottomNavBar = () => {
-  const router = useRouter()
-  const [value, setValue] = useState(
-    NavItems.findIndex(e => e.path === router.route)
-  )
   const { t } = useTranslation()
-
-  const handleChange = (routeIndex: number) => {
-    const { path } = NavItems[routeIndex]
-    router.push(path)
-  }
-
   return (
-    <Paper
-      sx={{
+    <Tabs
+      variant="soft-rounded"
+      colorScheme="blue"
+      className="nav-bar-container"
+      display="flex"
+      style={{
         position: 'fixed',
         bottom: 0,
         left: 0,
         right: 0,
-        zIndex: 99999,
-        willChange: 'transform',
+        zIndex: 2000,
         height: 'calc(56px + (env(safe-area-inset-bottom) / 2))',
-        paddingBottom: 'calc(env(safe-area-inset-bottom) / 2)',
-      }}
-      elevation={3}>
-      <BottomNavigation
-        showLabels
-        value={value}
-        onChange={(event, newValue) => {
-          setValue(newValue)
-          handleChange(newValue)
-        }}>
-        {NavItems.map((item, idx) => (
-          <BottomNavigationAction
-            key={idx.toString()}
-            label={t(item.label)}
-            icon={item.icon}
-          />
+        // paddingBottom: 'calc(env(safe-area-inset-bottom) / 2)',
+      }}>
+      <TabList display="flex" style={{ flex: 1, padding: 5 }}>
+        {NavItems.map((tab, tIdx) => (
+          <Tab
+            key={tIdx}
+            display="flex"
+            flexDirection="column"
+            onClick={() => {
+              router.push(tab.path)
+            }}
+            style={{ flex: 1 }}>
+            <Icon as={tab.icon} w="6" h="6" />
+            <Box fontSize="12px" userSelect="none">
+              {t(tab.label)}
+            </Box>
+          </Tab>
         ))}
-      </BottomNavigation>
-    </Paper>
+      </TabList>
+    </Tabs>
   )
 }
 

@@ -58,6 +58,9 @@ export const useHomePageService = () => {
       )?.filter(coincart => coincart.district === appState.selectedDistrics)
 
       appConfig.setAvailableCoincarts(filteredList)
+
+      const [firstCoincart] = filteredList
+      window?.map.setView([firstCoincart.latitude, firstCoincart.longitude])
     }
   }, [appState.selectedDistrics])
 

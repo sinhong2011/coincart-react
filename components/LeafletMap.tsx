@@ -2,8 +2,7 @@ import { MapContainer, TileLayer, ZoomControl } from 'react-leaflet'
 import React, { useCallback } from 'react'
 
 import { Map as LeafletMapProps } from 'leaflet'
-import { IconButton } from '@mui/material'
-import { Navigation } from '@mui/icons-material'
+
 import { useCurrentLocation } from '../utils/xHook'
 import { useHomePageService } from '../api/service/home'
 import CoincartMarker from './CoincartMarker'
@@ -15,20 +14,19 @@ const LocateButton = ({ map }: { map: LeafletMapProps }) => {
     map.setView([currLocation.latitude, currLocation.longitude], 12)
   }, [map])
 
-  return (
-    <IconButton
-      color="secondary"
-      style={{
-        position: 'absolute',
-        zIndex: 1000,
-        bottom: 'calc(env(safe-area-inset-bottom) + 140px)',
-        right: 6,
-      }}
-      component="span"
-      onClick={onClick}>
-      <Navigation />
-    </IconButton>
-  )
+  return null
+  // <IconButton
+  //   color="secondary"
+  //   style={{
+  //     position: 'absolute',
+  //     zIndex: 2,
+  //     bottom: 'calc(env(safe-area-inset-bottom) + 140px)',
+  //     right: 6,
+  //   }}
+  //   component="span"
+  //   onClick={onClick}>
+  //   <Navigation />
+  // </IconButton>
 }
 
 const LeafletMap = () => {
