@@ -6,11 +6,19 @@ import type { NextPage } from 'next'
 import { Languangs } from 'types/i18n'
 import { useEffect } from 'react'
 import { useCoincartSummaryService } from 'api/service/dashboard'
-import AnimatedCard from 'components/AnimatedCard'
+
 import { useTranslation } from 'next-i18next'
-import dayjs from 'dayjs'
 import { Spring } from 'framer-motion'
-import { Box } from '@chakra-ui/react'
+import dayjs from 'dayjs'
+import {
+  Grid,
+  GridItem,
+  Box,
+  Stat,
+  StatLabel,
+  StatHelpText,
+  StatNumber,
+} from '@chakra-ui/react'
 
 const DashboardPage: NextPage = () => {
   const { t } = useTranslation()
@@ -33,19 +41,33 @@ const DashboardPage: NextPage = () => {
 
   return (
     <div className="page-container">
-      <Box container spacing={2}>
-        <Box item xs={6}>
-          <AnimatedCard
-            isLoading={isFetching}
-            title={t('dashboard.startDate')}
-            initial={{
-              opacity: 0,
-            }}
-            animate={{ opacity: 1, transition: { ...spring } }}>
-            {coincartSummary?.startDate}
-          </AnimatedCard>
-        </Box>
-        <Box item xs={6}>
+      <Grid
+        h="200px"
+        templateRows="repeat(2, 1fr)"
+        templateColumns="repeat(5, 1fr)"
+        gap={4}>
+        <GridItem colSpan={3}>
+          <Box
+            maxW="sm"
+            borderWidth="1px"
+            borderRadius="lg"
+            overflow="hidden"
+            p="2"
+            bg="papayawhip">
+            <Stat>
+              <StatLabel>{t('dashboard.collectedCoins')}</StatLabel>
+              <StatNumber>{coincartSummary?.coins}</StatNumber>
+              <StatHelpText>{`${coincartSummary?.startDate} - ${dayjs().format(
+                'YYYY-MM-DD'
+              )}`}</StatHelpText>
+            </Stat>
+          </Box>
+        </GridItem>
+        <GridItem colSpan={2} bg="papayawhip" />
+        <GridItem colSpan={4} bg="tomato" />
+      </Grid>
+
+      {/* <Box item xs={6}>
           <AnimatedCard
             isLoading={isFetching}
             title={t('dashboard.endDate')}
@@ -105,8 +127,7 @@ const DashboardPage: NextPage = () => {
             }}
           />
         </Box>
-        <Box item xs={7}></Box>
-      </Box>
+        <Box item xs={7}></Box> */}
     </div>
   )
 }

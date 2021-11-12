@@ -3,9 +3,9 @@
 import Document, {
   Html,
   Head,
-  Main,
   NextScript,
   DocumentContext,
+  Main,
 } from 'next/document'
 
 const Loader = () => (
@@ -14,7 +14,9 @@ const Loader = () => (
       <tbody>
         <tr>
           <td>
-            <div className="loader_logo">
+            <div
+              className="loader_logo"
+              style={{ display: 'flex', justifyContent: 'center' }}>
               <img src="/vercel.svg" alt="" width="200" height="200" />
             </div>
             <div className="bar">

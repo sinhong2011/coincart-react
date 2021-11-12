@@ -19,7 +19,8 @@
     "collectedCoins": "已收集硬幣",
     "totalValue": "總面值",
     "startDate": "計劃開始日期",
-    "endDate": "截至"
+    "endDate": "截至",
+    "planDuration": "計畫已運行"
   },
   "settings": {
     "tabTitle": "設定"

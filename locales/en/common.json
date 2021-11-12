@@ -19,7 +19,8 @@
     "collectedCoins": "Collected coins",
     "totalValue": "Aggregate par value",
     "startDate": "Plan starting date",
-    "endDate": "As of"
+    "endDate": "As of",
+    "planDuration": "Plan duration"
   },
   "settings": {
     "tabTitle": "Settings"

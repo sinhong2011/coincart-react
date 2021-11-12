@@ -19,7 +19,7 @@ export const Content = ({
     alignItems="baseline"
     flexDirection={horizontal ? 'row' : 'column'}>
     <Box
-      color="gray.400"
+      color="gray.800"
       fontWeight="bold"
       letterSpacing="wide"
       fontSize="x"
@@ -35,7 +35,7 @@ export const CartDetail = ({
 }) => {
   const { t } = useTranslation()
   return (
-    <Box p={5}>
+    <Box p={3}>
       <Content title={t('home.cartNo')} horizontal>
         {coinCart.cart_no}
       </Content>
