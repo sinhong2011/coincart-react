@@ -32,8 +32,7 @@ export abstract class XHttpClient {
 
   private _handleResponse = ({ data }: AxiosResponse) => data
 
-  protected _handleError = (error: any) => {
-    console.log('error >>> ', error.response)
-    return Promise.reject(error)
-  }
+  protected _handleError = (error: any) =>
+    // console.log('error >>> ', error.response)
+    Promise.reject(error)
 }

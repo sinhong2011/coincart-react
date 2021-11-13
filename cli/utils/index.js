@@ -1,17 +1,20 @@
 const { exec, spawn } = require('child_process')
 const path = require('path')
 
-
 /** @typedef {import('child_process').ChildProcessWithoutNullStreams} ChildProcessWithoutNullStreams */
 
 const utils = {
-  Sleep: (ms) => (new Promise(res => setTimeout(res, ms))),
+  Sleep: ms => new Promise(res => setTimeout(res, ms)),
   Exec: (cmd, cwd) => {
     cwd = cwd || path.resolve('./')
     return new Promise((res, rej) => {
       console.log(`> \x1b[2m${cmd}\x1b[0m`)
       exec(cmd, { cwd }, (error, stdout, stderr) => {
-        if (error) { console.error(`error: ${error}`); rej(error); return }
+        if (error) {
+          console.error(`error: ${error}`)
+          rej(error)
+          return
+        }
         if (stdout) console.log(stdout)
         if (stderr) console.log(stderr)
         res()
@@ -21,15 +24,16 @@ const utils = {
   /** @type {ChildProcessWithoutNullStreams[]} */
   processList: [],
   /**
-   * 
-   * @param {string} cmd 
-   * @param {string} cwd 
-   * @returns 
+   *
+   * @param {string} cmd
+   * @param {string} cwd
+   * @returns
    */
   Spawn(cmd, cwd = path.resolve('./')) {
-    const prefix = cwd === path.resolve('./')
-      ? '> '
-      : `> ${path.relative(path.resolve('./'), cwd)} -> `
+    const prefix =
+      cwd === path.resolve('./')
+        ? '> '
+        : `> ${path.relative(path.resolve('./'), cwd)} -> `
     console.log(`${prefix}\x1b[2m${cmd}\x1b[0m`)
     return new Promise((resolve, reject) => {
       let spawnProcess = spawn(cmd, {
@@ -41,10 +45,10 @@ const utils = {
         },
         cwd,
       })
-      spawnProcess.on('close', (code) => {
+      spawnProcess.on('close', code => {
         spawnProcess = null
         if (code) {
-          console.log(`${prefix}process exited with code ${code}`)
+          // console.log(`${prefix}process exited with code ${code}`)
           reject(new Error(`process exited with code ${code}`))
           return
         }
@@ -63,7 +67,9 @@ const utils = {
       }
       process.on('SIGINT', checkStop)
       process.on('SIGTERM', checkStop)
-      process.on('message', msg => { if (msg == 'shutdown') checkStop() })
+      process.on('message', msg => {
+        if (msg == 'shutdown') checkStop()
+      })
     })
   },
 }

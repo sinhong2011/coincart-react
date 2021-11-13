@@ -49,7 +49,7 @@ export const getCurrentLocation = () =>
   })
 
 export function contextLogger<T, P>(name = '', type: T, payload: P) {
-  if (process.env.NODE_ENV === 'production') return
+  if (process.env.REACT_APP_ENV === 'PRODUCTION') return
   console.group(`${name} Action Detail`)
   console.log(`Type: ${type}`)
   console.log('Payload: ', payload)

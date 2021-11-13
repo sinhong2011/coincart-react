@@ -21,8 +21,10 @@ module.exports = withPWA({
     REACT_APP_ENV: process.env.REACT_APP_ENV,
     REACT_APP_API_BASE: process.env.REACT_APP_API_BASE,
     REACT_APP_PUBLIC_URL: process.env.REACT_APP_PUBLIC_URL,
-    MAPBOX_KEY: process.env.MAPBOX_KEY,
     REACT_APP_TITLE: process.env.REACT_APP_TITLE,
+    MAPBOX_KEY: process.env.MAPBOX_KEY,
+    MAPBOX_USERNAME: process.env.MAPBOX_USERNAME,
+    MAPBOX_STYLE_ID: process.env.MAPBOX_STYLE_ID,
   },
   env: {
     REACT_APP_ENV: process.env.REACT_APP_ENV,

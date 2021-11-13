@@ -17,7 +17,6 @@ export const useCoincartSummaryService = () => {
 
   useEffect(() => {
     if (!isFetching && data && data.result) {
-      console.log('data.result', data.result)
       dispatch(appActions.getCoincartSummary(data.result))
     }
   }, [isFetching, data])

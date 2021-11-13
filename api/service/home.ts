@@ -48,7 +48,6 @@ export const useHomePageService = () => {
   }, [data])
 
   useEffect(() => {
-    console.log('appState.selectedDistrics', appState.selectedDistrics)
     if (!appState.selectedDistrics) {
       appConfig.setAvailableCoincarts(
         getFilterCoincartList(appState.coincartScheduleList!)

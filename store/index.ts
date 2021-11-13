@@ -7,10 +7,10 @@ export const store = configureStore({
   reducer: {
     app: appReducer,
   },
-  devTools: process.env.REACT_APP_ENV !== 'production',
+  devTools: process.env.REACT_APP_ENV !== 'PRODUCTION',
   middleware: getDefaultMiddleware => [
     ...getDefaultMiddleware({ serializableCheck: false }),
-    ...(process.env.REACT_APP_ENV !== 'production' ? [logger] : []),
+    ...(process.env.REACT_APP_ENV !== 'PRODUCTION' ? [logger] : []),
   ],
 })
 
