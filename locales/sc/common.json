@@ -4,7 +4,8 @@
     "darkMode": "暗黑模式",
     "settings": "设定",
     "to": "至",
-    "filterByDistrict": "根据地区筛选"
+    "filterByDistrict": "根据地区筛选",
+    "detail": "详细"
   },
   "home": {
     "tabTitle": "地圖",
@@ -13,17 +14,5 @@
     "duration": "日期",
     "district": "地区",
     "remarks": "备注"
-  },
-  "dashboard": {
-    "tabTitle": "仪表盘",
-    "transactions": "交易次数",
-    "collectedCoins": "已收集硬币",
-    "totalValue": "总面值",
-    "startDate": "计划开始日记",
-    "endDate": "截至",
-    "planDuration": "计画已运行"
-  },
-  "settings": {
-    "tabTitle": "设定"
   }
 }

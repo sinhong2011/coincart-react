@@ -4,7 +4,8 @@
     "darkMode": "暗黑模式",
     "settings": "設定",
     "to": "至",
-    "filterByDistrict": "根據地區篩選"
+    "filterByDistrict": "根據地區篩選",
+    "detail": "詳細"
   },
   "home": {
     "tabTitle": "地圖",
@@ -13,17 +14,5 @@
     "duration": "日期",
     "district": "地區",
     "remarks": "備註"
-  },
-  "dashboard": {
-    "tabTitle": "儀錶盤",
-    "transactions": "交易次數",
-    "collectedCoins": "已收集硬幣",
-    "totalValue": "總面值",
-    "startDate": "計劃開始日期",
-    "endDate": "截至",
-    "planDuration": "計畫已運行"
-  },
-  "settings": {
-    "tabTitle": "設定"
   }
 }

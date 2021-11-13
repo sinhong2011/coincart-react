@@ -1,6 +1,7 @@
 import { Marker } from 'react-leaflet'
 import L from 'leaflet'
 import * as React from 'react'
+import { useTranslation } from 'next-i18next'
 import { CoinCartScheduleDetail } from '../types/apiTypes'
 import { BottomSheetContext } from '../context/bottom-sheet/slice'
 import { CartDetail } from './CoinCartDetail'
@@ -20,7 +21,7 @@ type CoincartMarkerProps = {
 const CoincartMarker = ({ coinCart }: CoincartMarkerProps): JSX.Element => {
   const [, { openBottomSheet }] = React.useContext(BottomSheetContext)
   const { focusedCoincart, setFocusedCoincart } = useHomePageService()
-
+  const { t } = useTranslation()
   return (
     <Marker
       position={[coinCart.latitude, coinCart.longitude]}
@@ -32,7 +33,7 @@ const CoincartMarker = ({ coinCart }: CoincartMarkerProps): JSX.Element => {
           window?.map.setView([coinCart.latitude, coinCart.longitude], 14)
           setFocusedCoincart(coinCart.index)
           openBottomSheet?.({
-            title: 'Detail',
+            title: t('common.detail'),
             content: <CartDetail coinCart={coinCart} />,
           })
         },

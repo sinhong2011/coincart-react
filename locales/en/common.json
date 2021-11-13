@@ -4,7 +4,8 @@
     "darkMode": "Dark Mode",
     "settings": "Settings",
     "to": "to",
-    "filterByDistrict": "Filter by district"
+    "filterByDistrict": "Filter by district",
+    "detail": "Detail"
   },
   "home": {
     "tabTitle": "Map",
@@ -13,17 +14,5 @@
     "duration": "Duration",
     "district": "District",
     "remarks": "Remarks"
-  },
-  "dashboard": {
-    "tabTitle": "Dashboard",
-    "transactions": "Transactions",
-    "collectedCoins": "Collected coins",
-    "totalValue": "Aggregate par value",
-    "startDate": "Plan starting date",
-    "endDate": "As of",
-    "planDuration": "Plan duration"
-  },
-  "settings": {
-    "tabTitle": "Settings"
   }
 }
