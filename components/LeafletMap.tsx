@@ -29,10 +29,9 @@ const LocateButton = () => {
       style={{
         position: 'absolute',
         zIndex: 2,
-        bottom: 'calc(env(safe-area-inset-bottom) + 40px)',
+        bottom: 'calc(env(safe-area-inset-bottom) + 50px)',
         right: 6,
       }}
-      colorScheme="white"
       onClick={onClick}
       size="large">
       <MdOutlineNavigation size="30" />
