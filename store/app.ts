@@ -1,13 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import router from 'next/router'
 import { Languangs } from '../types/i18n'
-import { CoincartSummaryData, CoinCartScheduleDetail } from '../types/apiTypes'
+import { CoinCartScheduleDetail } from '../types/apiTypes'
 import { getMemoAppLang } from '../utils/xCm'
 
 export type AppConfigState = {
   mode: 'dark' | 'light'
   language: Languangs
-  coincartSummary: CoincartSummaryData | null
   coincartScheduleList: CoinCartScheduleDetail[] | null
   districtOptions: string[] | null
   availableCoincarts: CoinCartScheduleDetail[] | null
@@ -19,7 +18,6 @@ export type AppConfigState = {
 const initialState: AppConfigState = {
   mode: 'light',
   language: getMemoAppLang(),
-  coincartSummary: null,
   coincartScheduleList: null,
   districtOptions: null,
   availableCoincarts: null,
@@ -50,10 +48,6 @@ const appSlice = createSlice({
       window.localStorage.setItem('appLanguage', payload)
       window.i18n.changeLanguage(payload)
       state.selectedDistrics = ''
-    },
-
-    getCoincartSummary(state, { payload }: PayloadAction<CoincartSummaryData>) {
-      state.coincartSummary = payload
     },
 
     getCoinCartSchedule(

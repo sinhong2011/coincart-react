@@ -39,13 +39,3 @@ export type GetCoinCartRequest = {
 }
 
 export type GetCoinCartResponse = ResponseFactory<CoinCartScheduleDetail[]>
-
-export type CoincartSummaryData = {
-  startDate: string
-  toDate: string
-  transaction: number
-  coins: number
-  totalCost: number
-}
-
-export type GetDashboardRsponse = { result: CoincartSummaryData }
