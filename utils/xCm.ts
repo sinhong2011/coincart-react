@@ -57,6 +57,6 @@ export function contextLogger<T, P>(name = '', type: T, payload: P) {
 }
 
 export const getMemoAppLang = (): Languangs => {
-  if (!isBrowser()) return 'tc'
-  return (window.localStorage.getItem('appLanguage') as Languangs) || 'tc'
+  if (!isBrowser()) return 'en'
+  return (window.localStorage.getItem('appLanguage') as Languangs) || 'en'
 }

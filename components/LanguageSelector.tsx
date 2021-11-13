@@ -9,16 +9,13 @@ import {
 } from '@chakra-ui/react'
 import { MdOutlineLanguage } from 'react-icons/md'
 
-import { useTranslation } from 'next-i18next'
 import { useAppConfig } from '../store/hooks'
 import { Languangs } from '../types/i18n'
 
 export const LanguageSelector = () => {
-  const { t } = useTranslation()
   const { setLanguage, appState } = useAppConfig()
 
   const onChangeLang = (nextValue: Languangs) => {
-    console.log('nextValue', nextValue)
     setLanguage(nextValue)
   }
 
@@ -50,15 +47,6 @@ export const LanguageSelector = () => {
             <Radio value="sc">簡體中文</Radio>
           </Stack>
         </RadioGroup>
-        {/* <MenuItem onClick={onChangeLang} value="en">
-          English
-        </MenuItem>
-        <MenuItem onClick={onChangeLang} value="tc">
-          繁體中文
-        </MenuItem>
-        <MenuItem onClick={onChangeLang} value="sc">
-          簡體中文
-        </MenuItem> */}
       </MenuList>
     </Menu>
   )
