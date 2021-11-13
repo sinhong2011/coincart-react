@@ -10,7 +10,7 @@ import { appWithTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
 
 import { QueryClient, QueryClientProvider } from 'react-query'
-import BottomNavBar from 'components/BottomNavBar'
+
 import { BottomSheetProvider } from 'context/bottom-sheet/provider'
 import { useAppConfig } from 'store/hooks'
 import { wrapper } from 'store/index'
@@ -81,7 +81,6 @@ user-scalable=no"
           <BottomSheetProvider>
             <div className="_app-container">
               <Component {...pageProps} />
-              <BottomNavBar />
             </div>
           </BottomSheetProvider>
         </QueryClientProvider>
