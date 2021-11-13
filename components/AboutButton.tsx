@@ -14,7 +14,7 @@ import { AiOutlineInfoCircle } from 'react-icons/ai'
 import { BottomSheetContext } from '../context/bottom-sheet/slice'
 
 const Content = () => (
-  <Box p="3">
+  <Box p="3" width="100%">
     <Stack m="1">
       <HStack alignItems="flex-end">
         <Heading>CoinCart-Map</Heading>
