@@ -1,7 +1,7 @@
 import { MapContainer, TileLayer, ZoomControl, Marker } from 'react-leaflet'
 import React from 'react'
 
-import L, { Map as LeafletMapProps } from 'leaflet'
+import L from 'leaflet'
 
 import { useCurrentLocation } from 'utils/xHook'
 import { useHomePageService } from 'api/service/home'
@@ -16,7 +16,7 @@ const CurrentLocationIcon = L.icon({
 
 const mapboxStyleUrl = `https://api.mapbox.com/styles/v1/${process.env.MAPBOX_USERNAME}/${process.env.MAPBOX_STYLE_ID}/tiles/256/{z}/{x}/{y}@2x?lang=tc&access_token=${process.env.MAPBOX_KEY}`
 
-const LocateButton = ({ map }: { map: LeafletMapProps }) => {
+const LocateButton = () => {
   const { currLocation } = useCurrentLocation()
 
   const onClick = () => {
@@ -86,7 +86,7 @@ const LeafletMap = () => {
 
   return (
     <div className="map-container">
-      {map && <LocateButton map={map} />}
+      {map && <LocateButton />}
       {displayMap}
     </div>
   )

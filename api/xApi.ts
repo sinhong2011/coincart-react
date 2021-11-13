@@ -1,8 +1,4 @@
-import {
-  GetCoinCartRequest,
-  GetCoinCartResponse,
-  GetDashboardRsponse,
-} from 'types/apiTypes'
+import { GetCoinCartRequest, GetCoinCartResponse } from 'types/apiTypes'
 import { XHttpClient } from 'utils/xHttpClient'
 
 class XApi extends XHttpClient {
@@ -11,12 +7,6 @@ class XApi extends XHttpClient {
       '/coin-cart-schedule',
       { params }
     )
-  }
-
-  public getDashboard(): Promise<GetDashboardRsponse> {
-    return this.instance.get('api/dashboard', {
-      baseURL: '/',
-    })
   }
 }
 
