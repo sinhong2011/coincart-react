@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "env-cmd -e local next dev",
-    "build:dev": "next lint --fix && env-cmd -e prod next build",
-    "build": "next lint --fix && env-cmd -e prod next build",
+    "build:dev": "env-cmd -e local next build",
+    "build": "env-cmd -e prod next build",
     "start": "env-cmd -e dev next start",
     "lint": "next lint --fix",
     "deploy": "node ./cli/deploy",
