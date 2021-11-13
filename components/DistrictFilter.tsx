@@ -1,10 +1,12 @@
 import { useHomePageService } from 'api/service/home'
 
 import { Select } from '@chakra-ui/react'
+import { useTranslation } from 'next-i18next'
 
 const DistrictFilter = () => {
   const { districtOptions, selectedDistrics, setSelectedDistrics } =
     useHomePageService()
+  const { t } = useTranslation()
 
   return (
     <Select
@@ -12,7 +14,7 @@ const DistrictFilter = () => {
       onChange={e => {
         setSelectedDistrics(e.target.value as string)
       }}
-      placeholder={'Filter by district'}
+      placeholder={t('common.filterByDistrict')}
       style={{
         position: 'fixed',
         zIndex: 1000,

@@ -1,12 +1,13 @@
 {
   "common": {
-    "language": "語言",
+    "language": "语言",
     "darkMode": "暗黑模式",
     "settings": "设定",
-    "to": "至"
+    "to": "至",
+    "filterByDistrict": "根据地区筛选"
   },
   "home": {
-    "tabTitle": "收銀车",
+    "tabTitle": "地圖",
     "cartNo": "收银车号码",
     "address": "地址",
     "duration": "日期",
@@ -15,12 +16,12 @@
   },
   "dashboard": {
     "tabTitle": "仪表盘",
-    "transactions": "交易次數",
-    "collectedCoins": "已收集硬幣",
-    "totalValue": "總面值",
-    "startDate": "計劃開始日記",
+    "transactions": "交易次数",
+    "collectedCoins": "已收集硬币",
+    "totalValue": "总面值",
+    "startDate": "计划开始日记",
     "endDate": "截至",
-    "planDuration": "計畫已運行"
+    "planDuration": "计画已运行"
   },
   "settings": {
     "tabTitle": "设定"

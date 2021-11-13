@@ -1,6 +1,6 @@
-import React, { ReactNode, useReducer, useRef, useState } from 'react'
+import React, { ReactNode, useReducer } from 'react'
 
-import { BottomSheet, BottomSheetRef } from 'react-spring-bottom-sheet'
+import { BottomSheet } from 'react-spring-bottom-sheet'
 import { SheetContent } from 'components/sheet-content'
 import {
   BottomSheetContent,
@@ -18,14 +18,10 @@ export const BottomSheetProvider = ({
   children,
 }: BottomSheetProviderProps): JSX.Element => {
   const [state, dispatch] = useReducer(bottomSheetReducer, bottomSheetState)
-  const sheetRef = useRef<BottomSheetRef>(null)
-  const [expandOnContentDrag, setExpandOnContentDrag] = useState(true)
-  const focusRef = useRef<HTMLButtonElement>(null)
+  // const sheetRef = useRef<BottomSheetRef>(null)
+  // const [expandOnContentDrag, setExpandOnContentDrag] = useState(true)
+  // const focusRef = useRef<HTMLButtonElement>(null)
   const { open, bottomSheetContent = null } = state
-
-  const handleClose = () => {
-    dispatch({ type: BottomSheetActionTypes.BOTTOM_SHEET_DISMISS, payload: {} })
-  }
 
   const openBottomSheet = (content: BottomSheetContent) => {
     dispatch({
@@ -49,10 +45,12 @@ export const BottomSheetProvider = ({
 
       <BottomSheet
         open={open}
-        expandOnContentDrag={expandOnContentDrag}
+        // expandOnContentDrag={expandOnContentDrag}
         onDismiss={closeBottomSheet}
         snapPoints={({ maxHeight }) => maxHeight / 2}
-        blocking={true}>
+        blocking={true}
+        header={bottomSheetContent?.title}
+        style={{ zIndex: 9999 }}>
         <SheetContent>{bottomSheetContent?.content}</SheetContent>
       </BottomSheet>
     </BottomSheetContext.Provider>

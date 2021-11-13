@@ -34,6 +34,7 @@ export const CartDetail = ({
   coinCart: CoinCartScheduleDetail
 }) => {
   const { t } = useTranslation()
+
   return (
     <Box p={3}>
       <Content title={t('home.cartNo')} horizontal>

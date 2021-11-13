@@ -7,6 +7,7 @@ import xApiClient from 'api/xApi'
 import { CoinCartScheduleDetail } from 'types/apiTypes'
 
 import { Map as LeafletMapProps } from 'leaflet'
+import { isBrowser } from '../../utils/xCm'
 
 const getFilterCoincartList = (list: CoinCartScheduleDetail[] = []) =>
   Array.isArray(list)
@@ -19,18 +20,17 @@ export const useHomePageService = () => {
   const appConfig = useAppConfig()
 
   const { i18n } = useTranslation()
-  const { error, isFetching, data, refetch } = useQuery(
+  const { error, isFetching, data, refetch, isSuccess } = useQuery(
     '',
-    () => xApiClient.getCoinCartSchedule({ lang: i18n.language as Languangs }),
+    () =>
+      xApiClient.getCoinCartSchedule({ lang: appState.language as Languangs }),
     {
       enabled: false,
     }
   )
 
   useEffect(() => {
-    if (appState.coincartScheduleList) return
-
-    if (!isFetching && data && data?.result?.datasize > 0) {
+    if (data) {
       const arr = data.result.records
         .slice(0)
         .map((e, index) => ({ ...e, index }))
@@ -45,9 +45,10 @@ export const useHomePageService = () => {
 
       appConfig.getCoinCartSchedule(arr)
     }
-  }, [isFetching, data, appState.coincartScheduleList])
+  }, [data])
 
   useEffect(() => {
+    console.log('appState.selectedDistrics', appState.selectedDistrics)
     if (!appState.selectedDistrics) {
       appConfig.setAvailableCoincarts(
         getFilterCoincartList(appState.coincartScheduleList!)
@@ -60,13 +61,20 @@ export const useHomePageService = () => {
       appConfig.setAvailableCoincarts(filteredList)
 
       const [firstCoincart] = filteredList
-      window?.map.setView([firstCoincart.latitude, firstCoincart.longitude])
+      if (firstCoincart)
+        window?.map.setView([firstCoincart.latitude, firstCoincart.longitude])
     }
   }, [appState.selectedDistrics])
 
   useEffect(() => {
     if (map) window.map = map
   }, [map])
+
+  useEffect(() => {
+    if (i18n && isBrowser()) {
+      window.i18n = i18n
+    }
+  }, [i18n])
 
   const getCoinCartSchedule = () => {
     // if (appState.coincartScheduleList) return

@@ -3,10 +3,11 @@
     "language": "語言",
     "darkMode": "暗黑模式",
     "settings": "設定",
-    "to": "至"
+    "to": "至",
+    "filterByDistrict": "根據地區篩選"
   },
   "home": {
-    "tabTitle": "神紗車",
+    "tabTitle": "地圖",
     "cartNo": "收銀車號碼",
     "address": "地址",
     "duration": "日期",

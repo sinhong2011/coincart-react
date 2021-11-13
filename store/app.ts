@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import router from 'next/router'
 import { Languangs } from '../types/i18n'
 import { CoincartSummaryData, CoinCartScheduleDetail } from '../types/apiTypes'
+import { getMemoAppLang } from '../utils/xCm'
 
 export type AppConfigState = {
   mode: 'dark' | 'light'
@@ -17,7 +18,7 @@ export type AppConfigState = {
 
 const initialState: AppConfigState = {
   mode: 'light',
-  language: 'tc',
+  language: getMemoAppLang(),
   coincartSummary: null,
   coincartScheduleList: null,
   districtOptions: null,
@@ -34,38 +35,21 @@ const appSlice = createSlice({
   initialState,
   reducers: {
     initApp: state => {
-      const appConfigStr = window.localStorage.getItem('appConfig') || ''
-
-      if (appConfigStr) {
-        const appConfig = JSON.parse(appConfigStr) as AppConfigState
-
-        state.language = (router.locale as Languangs) || appConfig.language
-        state.mode = appConfig.mode
-      }
+      state.language = (router.locale as Languangs) || getMemoAppLang()
     },
     setDarkMode: state => {
       const mode = 'dark'
       state.mode = mode
-      window.localStorage.setItem(
-        'appConfig',
-        JSON.stringify({ ...state, mode })
-      )
     },
     setLightMode: state => {
       const mode = 'light'
       state.mode = mode
-      window.localStorage.setItem(
-        'appConfig',
-        JSON.stringify({ ...state, mode })
-      )
     },
     setLanguage(state, { payload }: PayloadAction<SetLanguagePayload>) {
       state.language = payload
-
-      window.localStorage.setItem(
-        'appConfig',
-        JSON.stringify({ ...state, language: payload })
-      )
+      window.localStorage.setItem('appLanguage', payload)
+      window.i18n.changeLanguage(payload)
+      state.selectedDistrics = ''
     },
 
     getCoincartSummary(state, { payload }: PayloadAction<CoincartSummaryData>) {

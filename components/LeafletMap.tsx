@@ -6,7 +6,7 @@ import { Map as LeafletMapProps } from 'leaflet'
 import { useCurrentLocation } from '../utils/xHook'
 import { useHomePageService } from '../api/service/home'
 import CoincartMarker from './CoincartMarker'
-const mapboxStyleUrl = `https://api.mapbox.com/styles/v1/niskan516/ckvja1tgj8qyb18rsvygg4v9z/tiles/256/{z}/{x}/{y}@2x?lang=tc&access_token=${process.env.MAPBOX_KEY}`
+const mapboxStyleUrl = `https://api.mapbox.com/styles/v1/${process.env.MAPBOX_USERNAME}/${process.env.MAPBOX_STYLE_ID}/tiles/256/{z}/{x}/{y}@2x?lang=tc&access_token=${process.env.MAPBOX_KEY}`
 
 const LocateButton = ({ map }: { map: LeafletMapProps }) => {
   const { currLocation } = useCurrentLocation()

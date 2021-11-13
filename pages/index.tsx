@@ -5,7 +5,9 @@ import dynamic from 'next/dynamic'
 import { Languangs } from 'types/i18n'
 import { useHomePageService } from 'api/service/home'
 import { useCurrentLocation } from 'utils/xHook'
-import DistrictFilter from '../components/DistrictFilter'
+import DistrictFilter from 'components/DistrictFilter'
+import { LanguageSelector } from 'components/LanguageSelector'
+import AboutButton from 'components/AboutButton'
 
 const Map = dynamic(
   () => import('components/LeafletMap'), // replace '@components/map' with your component's location
@@ -35,6 +37,8 @@ const HomePage: NextPage = () => {
   return (
     <div className="page-container" style={{}}>
       <DistrictFilter />
+      <LanguageSelector />
+      <AboutButton />
       <Map />
     </div>
   )

@@ -3,10 +3,11 @@
     "language": "Language",
     "darkMode": "Dark Mode",
     "settings": "Settings",
-    "to": "to"
+    "to": "to",
+    "filterByDistrict": "Filter by district"
   },
   "home": {
-    "tabTitle": "Cart",
+    "tabTitle": "Map",
     "cartNo": "Cart No.",
     "address": "Address",
     "duration": "Duration",
