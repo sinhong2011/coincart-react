@@ -1,5 +1,3 @@
-// import { Grid } from '@mui/material'
-
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import type { NextPage } from 'next'

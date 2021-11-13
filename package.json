@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "env-cmd -e local next dev",
-    "build": "next lint --fix && env-cmd -e local next build",
+    "build": "next lint --fix && env-cmd -e prod next build",
     "start": "env-cmd -e dev next start",
     "lint": "next lint --fix",
     "deploy": "node ./cli/deploy",
@@ -38,7 +38,8 @@
     "react-query": "^3.28.0",
     "react-redux": "^7.2.6",
     "react-spring-bottom-sheet": "^3.4.0",
-    "sass": "^1.43.4"
+    "sass": "^1.43.4",
+    "env-cmd": "^10.1.0"
   },
   "devDependencies": {
     "@svgr/webpack": "^5.5.0",
@@ -48,7 +49,6 @@
     "@types/yargs": "^17.0.4",
     "@typescript-eslint/eslint-plugin": "^5.2.0",
     "babel-eslint": "^10.1.0",
-    "env-cmd": "^10.1.0",
     "eslint": "^7.2.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-config-next": "11.1.2",
