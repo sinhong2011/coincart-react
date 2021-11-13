@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "env-cmd -e local next dev",
     "build:dev": "env-cmd -e local next build",
-    "build": "env-cmd -e prod next build",
+    "build:prod": "env-cmd -e prod next build",
     "start": "env-cmd -e local next start",
     "lint": "next lint --fix",
     "deploy": "node ./cli/deploy",
