@@ -36,7 +36,7 @@ export const useAppConfig = () => {
       dispatch(appActions.setLightMode())
     },
     setLanguage: lang => {
-      i18n.changeLanguage(lang)
+      i18n.changeLanguage(lang!)
       dispatch(appActions.setLanguage(lang))
     },
     setDistrictOptions: optionList => {
