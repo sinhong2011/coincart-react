@@ -35,7 +35,6 @@ const appSlice = createSlice({
     initApp: state => {
       const initLang = (router.locale as Languangs) || getMemoAppLang()
       window.i18n.changeLanguage(initLang)
-      console.log('initLang', initLang)
       window.localStorage.setItem('appLanguage', initLang)
 
       state.language = initLang
