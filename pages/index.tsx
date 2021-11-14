@@ -15,16 +15,18 @@ const Map = dynamic(
 )
 
 const HomePage: NextPage = () => {
-  const { getCoinCartSchedule } = useHomePageService()
+  const { getCoinCartSchedule, appLang } = useHomePageService()
   const [isBrowser, setIsBrowser] = useState(false)
 
   const { initCurrentLocation } = useCurrentLocation()
 
   useEffect(() => {
-    initCurrentLocation()
+    if (appLang) {
+      initCurrentLocation()
 
-    getCoinCartSchedule()
-  }, [])
+      getCoinCartSchedule()
+    }
+  }, [appLang])
 
   useEffect(() => {
     setIsBrowser(true)

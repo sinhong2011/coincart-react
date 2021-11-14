@@ -1,5 +1,6 @@
 import { Languangs } from 'types/i18n'
 import { Coordinate } from '../types/common'
+
 export const isBrowser = () => typeof window !== 'undefined'
 
 export const deviceType = () => {
@@ -56,7 +57,6 @@ export function contextLogger<T, P>(name = '', type: T, payload: P) {
   console.groupEnd()
 }
 
-export const getMemoAppLang = (): Languangs => {
-  if (!isBrowser()) return 'en'
-  return (window.localStorage.getItem('appLanguage') as Languangs) || 'en'
-}
+export const getMemoAppLang = (): Languangs | null =>
+  (isBrowser() && (window.localStorage.getItem('appLanguage') as Languangs)) ||
+  null

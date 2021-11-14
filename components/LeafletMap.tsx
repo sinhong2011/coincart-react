@@ -27,10 +27,10 @@ const LocateButton = () => {
     <IconButton
       aria-label="navigation"
       style={{
-        position: 'absolute',
+        position: 'fixed',
         zIndex: 2,
-        bottom: 'calc(env(safe-area-inset-bottom) + 50px)',
-        right: 6,
+        bottom: 'calc(env(safe-area-inset-bottom) + 60px)',
+        right: 10,
       }}
       onClick={onClick}
       size="large">

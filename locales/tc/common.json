@@ -5,7 +5,12 @@
     "settings": "設定",
     "to": "至",
     "filterByDistrict": "根據地區篩選",
-    "detail": "詳細"
+    "detail": "詳細",
+    "about": "關於",
+    "description": "以地圖方式展示流動收銀車的地點和行程",
+    "appName": "香港流動收銀車地圖",
+    "feedback": "意見反饋",
+    "dataSource": "數據來源"
   },
   "home": {
     "tabTitle": "地圖",

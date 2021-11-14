@@ -67,6 +67,14 @@ class MyDocument extends Document {
           `,
             }}
           />
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Montserrat:500&display=swap"
+          />
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Titillium+Web:700,900&display=swap"
+          />
         </Head>
         <style>{`
   @keyframes loader-pc-wait {

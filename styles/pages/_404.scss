@@ -1,0 +1,30 @@
+.page-container {
+  .notfound-404 {
+    background-image: url('/404.png');
+    font-family: 'Titillium Web';
+    font-size: 150px;
+    font-weight: 900;
+    margin: 0;
+    text-transform: uppercase;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+  }
+
+  h2 {
+    font-family: titillium web, sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  p {
+    font-family: montserrat, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 0;
+    text-transform: uppercase;
+  }
+}

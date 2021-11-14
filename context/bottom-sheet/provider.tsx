@@ -1,7 +1,7 @@
 import React, { ReactNode, useReducer } from 'react'
 
 import { BottomSheet } from 'react-spring-bottom-sheet'
-import { SheetContent } from 'components/sheet-content'
+import { SheetContent } from 'components/SheetContent'
 import {
   BottomSheetContent,
   bottomSheetReducer,
@@ -18,9 +18,7 @@ export const BottomSheetProvider = ({
   children,
 }: BottomSheetProviderProps): JSX.Element => {
   const [state, dispatch] = useReducer(bottomSheetReducer, bottomSheetState)
-  // const sheetRef = useRef<BottomSheetRef>(null)
-  // const [expandOnContentDrag, setExpandOnContentDrag] = useState(true)
-  // const focusRef = useRef<HTMLButtonElement>(null)
+
   const { open, bottomSheetContent = null } = state
 
   const openBottomSheet = (content: BottomSheetContent) => {
@@ -45,9 +43,8 @@ export const BottomSheetProvider = ({
 
       <BottomSheet
         open={open}
-        // expandOnContentDrag={expandOnContentDrag}
         onDismiss={closeBottomSheet}
-        snapPoints={({ maxHeight }) => maxHeight / 2}
+        snapPoints={({ maxHeight }) => maxHeight / 2.1}
         blocking={true}
         header={bottomSheetContent?.title}
         style={{ zIndex: 9999 }}>

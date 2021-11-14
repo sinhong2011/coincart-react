@@ -7,7 +7,8 @@ import xApiClient from 'api/xApi'
 import { CoinCartScheduleDetail } from 'types/apiTypes'
 
 import { Map as LeafletMapProps } from 'leaflet'
-import { isBrowser } from '../../utils/xCm'
+import { isBrowser } from 'utils/xCm'
+import router from 'next/router'
 
 const getFilterCoincartList = (list: CoinCartScheduleDetail[] = []) =>
   Array.isArray(list)
@@ -20,10 +21,9 @@ export const useHomePageService = () => {
   const appConfig = useAppConfig()
 
   const { i18n } = useTranslation()
-  const { error, isFetching, data, refetch, isSuccess } = useQuery(
+  const { error, isFetching, data, refetch } = useQuery(
     '',
-    () =>
-      xApiClient.getCoinCartSchedule({ lang: appState.language as Languangs }),
+    () => xApiClient.getCoinCartSchedule({ lang: router.locale as Languangs }),
     {
       enabled: false,
     }
@@ -76,7 +76,7 @@ export const useHomePageService = () => {
   }, [i18n])
 
   const getCoinCartSchedule = () => {
-    // if (appState.coincartScheduleList) return
+    if (!appState.language) return
     refetch()
   }
 
@@ -95,5 +95,6 @@ export const useHomePageService = () => {
     map,
     focusedCoincart: appState.focusedCoincart,
     setFocusedCoincart: appConfig.setFocusedCoincart,
+    appLang: appState.language,
   }
 }

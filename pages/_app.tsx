@@ -32,6 +32,9 @@ function CoinCartApp({ Component, pageProps }: AppProps) {
     if (isBrowser()) {
       setDocLoader(document.getElementById('document_loader'))
 
+      if (['/404'].includes(router.pathname)) {
+        return
+      }
       appConfig.initApp()
     }
   }, [])
@@ -47,12 +50,6 @@ function CoinCartApp({ Component, pageProps }: AppProps) {
       docLoader.removeEventListener('webkittransitionend', removeLoader)
     }
   }, [docLoader])
-
-  useEffect(() => {
-    router.push(router.route, router.route, {
-      locale: appConfig.appState.language,
-    })
-  }, [appConfig.appState.language])
 
   return (
     <>

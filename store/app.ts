@@ -6,7 +6,7 @@ import { getMemoAppLang } from '../utils/xCm'
 
 export type AppConfigState = {
   mode: 'dark' | 'light'
-  language: Languangs
+  language: Languangs | null
   coincartScheduleList: CoinCartScheduleDetail[] | null
   districtOptions: string[] | null
   availableCoincarts: CoinCartScheduleDetail[] | null
@@ -33,7 +33,12 @@ const appSlice = createSlice({
   initialState,
   reducers: {
     initApp: state => {
-      state.language = (router.locale as Languangs) || getMemoAppLang()
+      const initLang = (router.locale as Languangs) || getMemoAppLang()
+      window.i18n.changeLanguage(initLang)
+      console.log('initLang', initLang)
+      window.localStorage.setItem('appLanguage', initLang)
+
+      state.language = initLang
     },
     setDarkMode: state => {
       const mode = 'dark'
@@ -44,9 +49,13 @@ const appSlice = createSlice({
       state.mode = mode
     },
     setLanguage(state, { payload }: PayloadAction<SetLanguagePayload>) {
+      router.push(router.route, router.route, {
+        locale: payload!,
+      })
       state.language = payload
-      window.localStorage.setItem('appLanguage', payload)
-      window.i18n.changeLanguage(payload)
+      window.localStorage.setItem('appLanguage', payload!)
+      window.i18n.changeLanguage(payload!)
+
       state.selectedDistrics = ''
     },
 

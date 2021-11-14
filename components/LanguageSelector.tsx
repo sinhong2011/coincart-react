@@ -7,6 +7,7 @@ import {
   Stack,
   Radio,
 } from '@chakra-ui/react'
+import router from 'next/router'
 import { MdOutlineLanguage } from 'react-icons/md'
 
 import { useAppConfig } from '../store/hooks'
@@ -38,7 +39,7 @@ export const LanguageSelector = () => {
 
       <MenuList width="100px">
         <RadioGroup
-          defaultValue={appState.language}
+          defaultValue={appState.language || router.locale}
           onChange={onChangeLang}
           p="2">
           <Stack>
