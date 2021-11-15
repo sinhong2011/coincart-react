@@ -10,7 +10,8 @@
     "description": "以地图方式展示流动收银车的地点和行程",
     "appName": "香港流动收银车地图",
     "feedback": "意見反馈",
-    "dataSource": "数据来源"
+    "dataSource": "数据来源",
+    "appTitle": "收银车地图"
   },
   "home": {
     "tabTitle": "地圖",

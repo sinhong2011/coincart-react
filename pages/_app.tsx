@@ -6,7 +6,7 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import { isBrowser } from 'utils/xCm'
-import { appWithTranslation } from 'next-i18next'
+import { appWithTranslation, useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
 
 import { QueryClient, QueryClientProvider } from 'react-query'
@@ -23,6 +23,7 @@ function CoinCartApp({ Component, pageProps }: AppProps) {
   const [docLoader, setDocLoader] = useState<HTMLElement | null>(null)
   const appConfig = useAppConfig()
   const router = useRouter()
+  const { t } = useTranslation()
 
   const removeLoader = () => {
     setDocLoader(null)
@@ -54,7 +55,7 @@ function CoinCartApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>{process.env.REACT_APP_TITLE}</title>
+        <title>{t('common.appTitle') || process.env.REACT_APP_TITLE}</title>
         <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="/favicon.ico" />
         <meta name="theme-color" content="#317EFB" />

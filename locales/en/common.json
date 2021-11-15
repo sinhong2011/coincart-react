@@ -10,7 +10,8 @@
     "description": "Show the location and schedule of the mobile coin cart on a map",
     "appName": "CoinCart-Map HK",
     "feedback": "Feedback",
-    "dataSource": "Data Source"
+    "dataSource": "Data Source",
+    "appTitle": "CoinCart Map"
   },
   "home": {
     "tabTitle": "Map",
