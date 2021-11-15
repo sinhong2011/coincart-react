@@ -32,7 +32,7 @@ const Content = () => {
         <Link
           style={{ marginTop: 15 }}
           color="teal.500"
-          href="mailto:niskna516.dev@gmail.com">
+          href="mailto:niskan516.dev@gmail.com">
           {t('common.feedback')}
         </Link>
       </Stack>
