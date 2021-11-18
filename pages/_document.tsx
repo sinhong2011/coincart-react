@@ -40,23 +40,6 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <meta
-            name="收銀車地圖(香港)"
-            content="以地圖方式展示流動收銀車的地點和行程"
-          />
-          <meta
-            name="Coincart Map(HK)"
-            content="An web app that show the location and schedule of the mobile coin cart on a map"
-          />
-          <link rel="icon" href="/delivery-truck-delivery-svgrepo-com.svg" />
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-          />
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/icon?family=Material+Icons"
-          />
           {/* Global Site Tag (gtag.js) - Google Analytics */}
           <script
             async
@@ -81,6 +64,15 @@ class MyDocument extends Document {
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Titillium+Web:700,900&display=swap"
+          />
+          <link rel="icon" href="/delivery-truck-delivery-svgrepo-com.svg" />
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+          />
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
           />
         </Head>
         <style>{`
