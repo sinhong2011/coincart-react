@@ -41,8 +41,12 @@ class MyDocument extends Document {
       <Html>
         <Head>
           <meta
-            name="流動收銀車地圖(香港)"
+            name="收銀車地圖(香港)"
             content="以地圖方式展示流動收銀車的地點和行程"
+          />
+          <meta
+            name="Coincart Map(HK)"
+            content="An web app that show the location and schedule of the mobile coin cart on a map"
           />
           <link rel="icon" href="/delivery-truck-delivery-svgrepo-com.svg" />
           <link
