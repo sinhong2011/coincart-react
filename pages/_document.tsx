@@ -86,7 +86,7 @@ class MyDocument extends Document {
     background: #ccc; margin-top: 35px; margin-bottom: 15px;
   }
   .loader .bar span { display: inline-block; position: absolute; left: 0; top: 0; height: 100%; width: 0%; background: #fff; margin: 0; padding: 0; box-shadow: 0 0 6px 0.5px rgb(255, 255, 255); }
-  .loader .info{ color: #fff; font-size: 7px; font-family: monospace; }
+  .loader .info{ color: #fff; font-size: 14px; font-family: monospace; }
   .loader-pc.wait { animation: loader-pc-wait .7s linear infinite; }
   .loader { 
     position: fixed; z-index: 999999; width: 100vw; height: 100vh; margin: 0; padding: 0; left: 0; top: 0; -webkit-font-smoothing: antialiased;

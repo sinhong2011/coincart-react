@@ -55,14 +55,23 @@ function CoinCartApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <meta
-          name="收銀車地圖(香港)"
-          content="以地圖方式展示流動收銀車的地點和行程"
+        <meta name="description" content={t('common.description')} />
+        <link
+          rel="alternate"
+          href={`${process.env.REACT_APP_PUBLIC_URL}`}
+          hrefLang="x-default"
         />
-        <meta
-          name="Coincart Map(HK)"
-          content="An web app that show the location and schedule of the mobile coin cart on a map"
+        <link
+          rel="alternate"
+          href={`${process.env.REACT_APP_PUBLIC_URL}/sc}`}
+          hrefLang="zh-Hans"
         />
+        <link
+          rel="alternate"
+          href={`${process.env.REACT_APP_PUBLIC_URL}/en`}
+          hrefLang="en"
+        />
+
         <title>{t('common.appTitle') || process.env.REACT_APP_TITLE}</title>
         <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="/favicon.ico" />
