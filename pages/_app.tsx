@@ -56,6 +56,7 @@ function CoinCartApp({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <meta name="description" content={t('common.description')} />
+        <meta name="keywords" content={t('common.keywords')} />
         <link
           rel="alternate"
           href={`${process.env.REACT_APP_PUBLIC_URL}`}
