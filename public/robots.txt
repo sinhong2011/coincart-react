@@ -1,0 +1,6 @@
+Sitemap: https://www.coincart-map-hk.app/sitemap.xml
+
+User-agent: *
+Allow: /*
+
+Disallow: /api/*
