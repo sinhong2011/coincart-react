@@ -11,7 +11,8 @@
     "appName": "香港流动收银车地图",
     "feedback": "意見反馈",
     "dataSource": "数据来源",
-    "appTitle": "香港流动收银车地图"
+    "appTitle": "香港流动收银车地图",
+    "aboutContent": "以地图方式展示流动收银车的地点和时间表。"
   },
   "home": {
     "tabTitle": "地圖",

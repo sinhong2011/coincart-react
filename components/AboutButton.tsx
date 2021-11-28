@@ -24,9 +24,9 @@ const Content = () => {
           <Heading>{t('common.appName')}</Heading>
           <Badge>v1</Badge>
         </HStack>
-        <Stack direction="row" h="40px" m={1} mb={2}>
-          <Divider orientation="vertical" />
-          <Box>{t('common.description')}</Box>
+        <Stack direction="row" m={1} mb={2}>
+          <Divider orientation="vertical" height="auto" />
+          <Box>{t('common.aboutContent')}</Box>
         </Stack>
 
         <Link
