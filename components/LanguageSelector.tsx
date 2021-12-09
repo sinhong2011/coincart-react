@@ -44,8 +44,8 @@ export const LanguageSelector = () => {
           p="2">
           <Stack>
             <Radio value="en">English</Radio>
-            <Radio value="tc">繁體中文</Radio>
-            <Radio value="sc">簡體中文</Radio>
+            <Radio value="zh-HK">繁體中文</Radio>
+            <Radio value="zh-CN">簡體中文</Radio>
           </Stack>
         </RadioGroup>
       </MenuList>

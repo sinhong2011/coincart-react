@@ -1,1 +1,1 @@
-export type Languangs = 'en' | 'tc' | 'sc'
+export type Languangs = 'en' | 'zh-HK' | 'zh-CN'

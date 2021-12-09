@@ -9,6 +9,7 @@ import { CoinCartScheduleDetail } from 'types/apiTypes'
 import { Map as LeafletMapProps } from 'leaflet'
 import { isBrowser } from 'utils/xCm'
 import router from 'next/router'
+import { LangsMapping } from '../../constant/const'
 
 const getFilterCoincartList = (list: CoinCartScheduleDetail[] = []) =>
   Array.isArray(list)
@@ -23,7 +24,10 @@ export const useHomePageService = () => {
   const { i18n } = useTranslation()
   const { error, isFetching, data, refetch } = useQuery(
     '',
-    () => xApiClient.getCoinCartSchedule({ lang: router.locale as Languangs }),
+    () =>
+      xApiClient.getCoinCartSchedule({
+        lang: LangsMapping[router.locale as Languangs] as Languangs,
+      }),
     {
       enabled: false,
     }
