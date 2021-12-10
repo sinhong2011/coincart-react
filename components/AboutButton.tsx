@@ -21,7 +21,7 @@ const Content = () => {
     <Box p="3" width="100%">
       <Stack m="1">
         <HStack alignItems="flex-end">
-          <Heading>{t('common.appName')}</Heading>
+          <Heading as="h1">{t('common.appName')}</Heading>
           <Badge>v1</Badge>
         </HStack>
         <Stack direction="row" m={1} mb={2}>

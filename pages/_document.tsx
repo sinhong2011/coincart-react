@@ -17,7 +17,12 @@ const Loader = () => (
             <div
               className="loader_logo"
               style={{ display: 'flex', justifyContent: 'center' }}>
-              <img src="/vercel.svg" alt="" width="200" height="200" />
+              <img
+                src="/vercel.svg"
+                alt="loading logo"
+                width="200"
+                height="200"
+              />
             </div>
             <div className="bar">
               <span className="loader-pc wait" />

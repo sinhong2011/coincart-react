@@ -14,7 +14,7 @@ import { BottomSheetProvider } from 'context/bottom-sheet/provider'
 import { useAppConfig } from 'store/hooks'
 import { wrapper } from 'store/index'
 import 'react-spring-bottom-sheet/dist/style.css'
-import { ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider, Heading } from '@chakra-ui/react'
 
 const queryClient = new QueryClient()
 
@@ -91,6 +91,13 @@ user-scalable=no"
         <QueryClientProvider client={queryClient}>
           <BottomSheetProvider>
             <div className="_app-container">
+              <Heading
+                as="h1"
+                style={{
+                  visibility: 'hidden',
+                }}>
+                {t('common.appName')}
+              </Heading>
               <Component {...pageProps} />
             </div>
           </BottomSheetProvider>
