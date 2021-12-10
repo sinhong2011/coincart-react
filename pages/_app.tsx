@@ -72,12 +72,12 @@ function CoinCartApp({ Component, pageProps }: AppProps) {
         <title>{t('common.appTitle') || process.env.REACT_APP_TITLE}</title>
         <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="/favicon.ico" />
-        <meta name="theme-color" content="#317EFB" />
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1.0, 
 user-scalable=no"
         />
+        <meta name="msvalidate.01" content="26AD0181DEDE6338EC4926AC8EBD346E" />
       </Head>
       <NextNprogress
         color="rgba(250,225,180,0.9)"
