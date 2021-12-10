@@ -5,7 +5,6 @@ import NextNprogress from 'nextjs-progressbar'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
-import { isBrowser } from 'utils/xCm'
 import { appWithTranslation, useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
 
@@ -30,14 +29,12 @@ function CoinCartApp({ Component, pageProps }: AppProps) {
   }
 
   useEffect(() => {
-    if (isBrowser()) {
-      setDocLoader(document.getElementById('document_loader'))
+    setDocLoader(document.getElementById('document_loader'))
 
-      if (['/404'].includes(router.pathname)) {
-        return
-      }
-      appConfig.initApp()
+    if (['/404'].includes(router.pathname)) {
+      return
     }
+    appConfig.initApp()
   }, [])
 
   useEffect(() => {
