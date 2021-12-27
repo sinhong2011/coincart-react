@@ -1,7 +1,9 @@
-import { CoinCartScheduleDetail } from 'types/apiTypes'
+import { CoinCartScheduleDetail } from 'types/api-types'
 import { useTranslation } from 'next-i18next'
 
 import { Box } from '@chakra-ui/react'
+
+import { useAppConfig } from '../store/hooks'
 
 type ContentProps = {
   title: string
@@ -34,6 +36,7 @@ export const CartDetail = ({
   coinCart: CoinCartScheduleDetail
 }) => {
   const { t } = useTranslation()
+  const { appState } = useAppConfig()
 
   return (
     <Box p={3}>
@@ -44,6 +47,7 @@ export const CartDetail = ({
       <Content title={t('home.duration')}>
         {`${coinCart.start_date} ${t('common.to')} ${coinCart.end_date}`}
       </Content>
+      <Content title={t('home.serviceHours')}>{appState.serviceHours}</Content>
       <Content title={t('home.district')}>{coinCart.district}</Content>
       <Content title={t('home.remarks')}>{coinCart.remarks}</Content>
     </Box>

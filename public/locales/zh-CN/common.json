@@ -12,7 +12,8 @@
     "feedback": "意見反馈",
     "dataSource": "数据来源",
     "appTitle": "香港流动收银车时间表 - 金管局硬币收集计画",
-    "aboutContent": "以地图方式展示流动收银车的地点和时间表。"
+    "aboutContent": "以地图方式展示流动收银车的地点和时间表。",
+    "loadingPostion": "正在为你载入收银车位置信息, 请稍等..."
   },
   "home": {
     "tabTitle": "地圖",
@@ -20,6 +21,7 @@
     "address": "地址",
     "duration": "日期",
     "district": "地区",
-    "remarks": "备注"
+    "remarks": "备注",
+    "serviceHours": "服务时段"
   }
 }

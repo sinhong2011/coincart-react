@@ -1,5 +1,3 @@
-import { Languangs } from 'types/i18n'
-
 export type ResponseFactory<TRecords> = {
   header: {
     success: boolean
@@ -24,8 +22,10 @@ export type CoinCartScheduleDetail = {
   index: number
 }
 
-export type GetCoinCartRequest = {
-  lang: Languangs
+export type ApiParamsLangs = 'en' | 'tc' | 'sc'
+
+export type GetCoinCartScheduleRequest = {
+  lang: ApiParamsLangs
   pagesize?: number
   offset?: number
   fields?: string
@@ -38,4 +38,10 @@ export type GetCoinCartRequest = {
   sortorder?: string
 }
 
-export type GetCoinCartResponse = ResponseFactory<CoinCartScheduleDetail[]>
+export type GetCoinCartScheduleResponse = ResponseFactory<
+  CoinCartScheduleDetail[]
+>
+
+export type GetCoinCartServiceHoursRequest = { lang: ApiParamsLangs }
+
+export type GetCoinCartServiceHoursResponse = { serviceHours: string }

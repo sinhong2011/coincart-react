@@ -2,10 +2,10 @@ import { Marker } from 'react-leaflet'
 import L from 'leaflet'
 import * as React from 'react'
 import { useTranslation } from 'next-i18next'
-import { CoinCartScheduleDetail } from '../types/apiTypes'
+import { CoinCartScheduleDetail } from '../types/api-types'
 import { BottomSheetContext } from '../context/bottom-sheet/slice'
 import { CartDetail } from './CoinCartDetail'
-import { useHomePageService } from '../api/service/home'
+import { useAppConfig } from '../store/hooks'
 
 const getIcon = (className = '') =>
   L.icon({
@@ -20,7 +20,10 @@ type CoincartMarkerProps = {
 
 const CoincartMarker = ({ coinCart }: CoincartMarkerProps): JSX.Element => {
   const [, { openBottomSheet }] = React.useContext(BottomSheetContext)
-  const { focusedCoincart, setFocusedCoincart } = useHomePageService()
+  const {
+    appState: { focusedCoincart },
+    setFocusedCoincart,
+  } = useAppConfig()
   const { t } = useTranslation()
   return (
     <Marker

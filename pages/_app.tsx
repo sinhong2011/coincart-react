@@ -8,21 +8,19 @@ import { useEffect, useState } from 'react'
 import { appWithTranslation, useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
 
-import { QueryClient, QueryClientProvider } from 'react-query'
-
 import { BottomSheetProvider } from 'context/bottom-sheet/provider'
 import { useAppConfig } from 'store/hooks'
 import { wrapper } from 'store/index'
 import 'react-spring-bottom-sheet/dist/style.css'
 import { ChakraProvider, Heading } from '@chakra-ui/react'
-
-const queryClient = new QueryClient()
+import { isBrowser } from '../utils/xCm'
 
 function CoinCartApp({ Component, pageProps }: AppProps) {
   const [docLoader, setDocLoader] = useState<HTMLElement | null>(null)
   const appConfig = useAppConfig()
   const router = useRouter()
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+  const [appLoaded, setAppLoaded] = useState(false)
 
   const removeLoader = () => {
     setDocLoader(null)
@@ -34,8 +32,11 @@ function CoinCartApp({ Component, pageProps }: AppProps) {
     if (['/404'].includes(router.pathname)) {
       return
     }
-    appConfig.initApp()
-  }, [])
+    if (isBrowser() && appLoaded) {
+      window.i18n = i18n
+      appConfig.initApp()
+    }
+  }, [isBrowser(), appLoaded])
 
   useEffect(() => {
     if (!docLoader) return () => undefined
@@ -48,6 +49,10 @@ function CoinCartApp({ Component, pageProps }: AppProps) {
       docLoader.removeEventListener('webkittransitionend', removeLoader)
     }
   }, [docLoader])
+
+  useEffect(() => {
+    setAppLoaded(true)
+  }, [])
 
   return (
     <>
@@ -79,7 +84,7 @@ user-scalable=no"
         />
       </Head>
       <NextNprogress
-        color="rgba(250,225,180,0.9)"
+        color="rgba(86, 172, 224,0.9)"
         startPosition={0.3}
         stopDelayMs={300}
         height={3}
@@ -88,20 +93,18 @@ user-scalable=no"
       />
 
       <ChakraProvider>
-        <QueryClientProvider client={queryClient}>
-          <BottomSheetProvider>
-            <div className="_app-container">
-              <Heading
-                as="h1"
-                style={{
-                  visibility: 'hidden',
-                }}>
-                {t('common.appName')}
-              </Heading>
-              <Component {...pageProps} />
-            </div>
-          </BottomSheetProvider>
-        </QueryClientProvider>
+        <BottomSheetProvider>
+          <div className="_app-container">
+            <Heading
+              as="h1"
+              style={{
+                visibility: 'hidden',
+              }}>
+              {t('common.appName')}
+            </Heading>
+            <Component {...pageProps} />
+          </div>
+        </BottomSheetProvider>
       </ChakraProvider>
     </>
   )

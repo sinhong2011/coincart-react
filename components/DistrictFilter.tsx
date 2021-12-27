@@ -1,19 +1,47 @@
-import { useHomePageService } from 'api/service/home'
-
 import { Select } from '@chakra-ui/react'
 import { useTranslation } from 'next-i18next'
+import { ChangeEventHandler, useEffect, useState } from 'react'
+import { useAppConfig } from 'store/hooks'
+import { getFilterCoincartList } from 'utils/xCm'
 
 const DistrictFilter = () => {
-  const { districtOptions, selectedDistrics, setSelectedDistrics } =
-    useHomePageService()
+  const { appState, setAvailableCoincarts } = useAppConfig()
+  const [selectedDistrics, setSelectedDistrics] = useState('')
   const { t } = useTranslation()
+
+  const updateCoincartDisplayList = () => {
+    if (!selectedDistrics) {
+      setAvailableCoincarts(
+        getFilterCoincartList(appState.coincartScheduleList!)
+      )
+    } else {
+      const filteredList = getFilterCoincartList(
+        appState.coincartScheduleList || []
+      )?.filter(coincart => coincart.district === selectedDistrics)
+
+      setAvailableCoincarts(filteredList)
+
+      const [firstCoincart] = filteredList
+      if (firstCoincart)
+        window?.map.setView([firstCoincart.latitude, firstCoincart.longitude])
+    }
+  }
+
+  useEffect(() => {
+    updateCoincartDisplayList()
+  }, [selectedDistrics])
+
+  const onSelectedDistricsChange:
+    | ChangeEventHandler<HTMLSelectElement>
+    | undefined = ({ target }) => {
+    const value = target.value as string
+    setSelectedDistrics(value)
+  }
 
   return (
     <Select
       value={selectedDistrics}
-      onChange={e => {
-        setSelectedDistrics(e.target.value as string)
-      }}
+      onChange={onSelectedDistricsChange}
       placeholder={t('common.filterByDistrict')}
       style={{
         position: 'fixed',
@@ -24,7 +52,7 @@ const DistrictFilter = () => {
       }}
       bg="white"
       borderColor="white">
-      {(districtOptions || []).map(district => (
+      {(appState.districtOptions || []).map(district => (
         <option key={district} value={district}>
           {district}
         </option>

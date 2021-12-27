@@ -14,14 +14,14 @@ export abstract class XHttpClient {
     this._initializeResponseInterceptor()
   }
 
-  private _initializeRequestInterceptor = () => {
+  private _initializeRequestInterceptor() {
     this.instance.interceptors.request.use(
       this._handleRequest,
       this._handleError
     )
   }
 
-  private _initializeResponseInterceptor = () => {
+  private _initializeResponseInterceptor() {
     this.instance.interceptors.response.use(
       this._handleResponse,
       this._handleError

@@ -3,11 +3,11 @@ import React from 'react'
 
 import L from 'leaflet'
 
-import { useCurrentLocation } from 'utils/xHook'
-import { useHomePageService } from 'api/service/home'
+import { useCurrentLocation, useMap } from 'utils/xHook'
 import CoincartMarker from 'components/CoincartMarker'
 import { IconButton } from '@chakra-ui/react'
 import { MdOutlineNavigation } from 'react-icons/md'
+import { useAppConfig } from 'store/hooks'
 
 const CurrentLocationIcon = L.icon({
   iconUrl: '/map-current-location.svg',
@@ -41,8 +41,10 @@ const LocateButton = () => {
 
 const LeafletMap = () => {
   const { currLocation } = useCurrentLocation()
-  const { availableCoincarts, fullCoincartScheduleList, map, setMap } =
-    useHomePageService()
+  const { map, setMap } = useMap()
+  const {
+    appState: { availableCoincarts, coincartScheduleList },
+  } = useAppConfig()
 
   const displayMap = React.useMemo(
     () => (
@@ -68,7 +70,7 @@ const LeafletMap = () => {
           url={mapboxStyleUrl}
         />
         <ZoomControl position="topleft"></ZoomControl>
-        {(availableCoincarts || fullCoincartScheduleList || []).map(
+        {(availableCoincarts || coincartScheduleList || []).map(
           (coinCart, cIndex) => (
             <CoincartMarker key={cIndex.toString()} coinCart={coinCart} />
           )

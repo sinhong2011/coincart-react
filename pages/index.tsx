@@ -1,13 +1,15 @@
 import type { NextPage } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import { Languangs } from 'types/i18n'
-import { useHomePageService } from 'api/service/home'
+
 import { useCurrentLocation } from 'utils/xHook'
 import DistrictFilter from 'components/DistrictFilter'
 import { LanguageSelector } from 'components/LanguageSelector'
 import AboutButton from 'components/AboutButton'
+import { useAppConfig } from 'store/hooks'
+import Backdrop from 'components/Backdrop'
 
 const Map = dynamic(
   () => import('components/LeafletMap'), // replace '@components/map' with your component's location
@@ -15,24 +17,19 @@ const Map = dynamic(
 )
 
 const HomePage: NextPage = () => {
-  const { getCoinCartSchedule, appLang } = useHomePageService()
-  const [isBrowser, setIsBrowser] = useState(false)
+  const { getCoinCartSchedule, appState } = useAppConfig()
 
   const { initCurrentLocation } = useCurrentLocation()
 
   useEffect(() => {
-    if (appLang) {
+    if (appState.initiaized) {
       initCurrentLocation()
 
       getCoinCartSchedule()
     }
-  }, [appLang])
+  }, [appState.initiaized])
 
-  useEffect(() => {
-    setIsBrowser(true)
-  }, [])
-
-  if (!isBrowser) {
+  if (!appState.initiaized) {
     return null
   }
 
@@ -42,6 +39,7 @@ const HomePage: NextPage = () => {
       <LanguageSelector />
       <AboutButton />
       <Map />
+      <Backdrop />
     </div>
   )
 }

@@ -1,5 +1,6 @@
 import { Languangs } from 'types/i18n'
-import { Coordinate } from '../types/common'
+import { Coordinate } from 'types/common'
+import { CoinCartScheduleDetail } from 'types/api-types'
 
 export const isBrowser = () => typeof window !== 'undefined'
 
@@ -60,3 +61,8 @@ export function contextLogger<T, P>(name = '', type: T, payload: P) {
 export const getMemoAppLang = (): Languangs | null =>
   (isBrowser() && (window.localStorage.getItem('appLanguage') as Languangs)) ||
   null
+
+export const getFilterCoincartList = (list: CoinCartScheduleDetail[] = []) =>
+  Array.isArray(list)
+    ? list.filter(e => !!e.address && !!e.latitude && !!e.longitude)
+    : []

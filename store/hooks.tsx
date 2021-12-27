@@ -1,8 +1,8 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'next-i18next'
-import type { AppDispatch, RootState } from './index'
+import type { AppDispatch, RootState } from './store-types'
 import { appActions, SetLanguagePayload } from './app'
-import { CoinCartScheduleDetail } from '../types/apiTypes'
+import { CoinCartScheduleDetail } from '../types/api-types'
 
 export const useAppDispatch = () => useDispatch<AppDispatch>()
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
@@ -13,11 +13,11 @@ type AppConfigActions = {
   setLightMode: () => void
   setLanguage: (lang: SetLanguagePayload) => void
   setDistrictOptions: (optionList: string[]) => void
-  getCoinCartSchedule: (arr: CoinCartScheduleDetail[]) => void
+  getCoinCartSchedule: () => void
   setAvailableCoincarts: (arr: CoinCartScheduleDetail[]) => void
   setMobileOpen: (mobileOpen: boolean) => void
-  setSelectedDistrics: (selectedDistrics: string) => void
   setFocusedCoincart: (focusedCoincart: number) => void
+  getCoinCartServiceHours: () => void
 }
 
 export const useAppConfig = () => {
@@ -42,8 +42,8 @@ export const useAppConfig = () => {
     setDistrictOptions: optionList => {
       dispatch(appActions.setDistrictOptions(optionList))
     },
-    getCoinCartSchedule: arr => {
-      dispatch(appActions.getCoinCartSchedule(arr))
+    getCoinCartSchedule: () => {
+      dispatch(appActions.getCoinCartSchedule())
     },
     setAvailableCoincarts: arr => {
       dispatch(appActions.setAvailableCoincarts(arr))
@@ -51,11 +51,11 @@ export const useAppConfig = () => {
     setMobileOpen: mobileOpen => {
       dispatch(appActions.setMobileOpen(mobileOpen))
     },
-    setSelectedDistrics: selectedDistrics => {
-      dispatch(appActions.setSelectedDistrics(selectedDistrics))
-    },
     setFocusedCoincart: focusedCoincart => {
       dispatch(appActions.setFocusedCoincart(focusedCoincart))
+    },
+    getCoinCartServiceHours: () => {
+      dispatch(appActions.getCoinCartServiceHours())
     },
   }
 

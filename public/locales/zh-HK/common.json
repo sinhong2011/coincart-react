@@ -12,7 +12,8 @@
     "feedback": "意見反饋",
     "dataSource": "數據來源",
     "appTitle": "香港流動收銀車時間表 - 金管局硬幣收集計畫",
-    "aboutContent": "以地圖方式展示流動收銀車的地點和時間表。"
+    "aboutContent": "以地圖方式展示流動收銀車的地點和時間表。",
+    "loadingPostion": "正在為你載入收銀車位置信息, 請稍等..."
   },
   "home": {
     "tabTitle": "地圖",
@@ -20,6 +21,7 @@
     "address": "地址",
     "duration": "日期",
     "district": "地區",
-    "remarks": "備註"
+    "remarks": "備註",
+    "serviceHours": "服務時段"
   }
 }

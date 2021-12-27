@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import router from 'next/router'
-import { Languangs } from '../types/i18n'
-import { CoinCartScheduleDetail } from '../types/apiTypes'
-import { getMemoAppLang } from '../utils/xCm'
+import { Languangs } from 'types/i18n'
+import { CoinCartScheduleDetail } from 'types/api-types'
+import { getMemoAppLang } from 'utils/xCm'
 
 export type AppConfigState = {
   mode: 'dark' | 'light'
@@ -11,8 +11,10 @@ export type AppConfigState = {
   districtOptions: string[] | null
   availableCoincarts: CoinCartScheduleDetail[] | null
   mobileOpen: boolean
-  selectedDistrics: string
   focusedCoincart: number | null
+  serviceHours: string
+  initiaized: boolean
+  loading: boolean
 }
 
 const initialState: AppConfigState = {
@@ -22,8 +24,10 @@ const initialState: AppConfigState = {
   districtOptions: null,
   availableCoincarts: null,
   mobileOpen: false,
-  selectedDistrics: '',
   focusedCoincart: null,
+  serviceHours: '',
+  initiaized: false,
+  loading: false,
 }
 
 export type SetLanguagePayload = AppConfigState['language']
@@ -38,6 +42,7 @@ const appSlice = createSlice({
       window.localStorage.setItem('appLanguage', initLang)
 
       state.language = initLang
+      state.initiaized = true
     },
     setDarkMode: state => {
       const mode = 'dark'
@@ -54,15 +59,19 @@ const appSlice = createSlice({
       state.language = payload
       window.localStorage.setItem('appLanguage', payload!)
       window.i18n.changeLanguage(payload!)
-
-      state.selectedDistrics = ''
     },
 
-    getCoinCartSchedule(
+    getCoinCartSchedule() {
+      return undefined
+    },
+    getCoinCartScheduleSuccess(
       state,
       { payload }: PayloadAction<CoinCartScheduleDetail[]>
     ) {
       state.coincartScheduleList = payload
+    },
+    getCoinCartScheduleFailure() {
+      return undefined
     },
     setDistrictOptions(state, { payload }: PayloadAction<string[]>) {
       state.districtOptions = payload
@@ -76,11 +85,24 @@ const appSlice = createSlice({
     setMobileOpen(state, { payload }: PayloadAction<boolean>) {
       state.mobileOpen = payload
     },
-    setSelectedDistrics(state, { payload }: PayloadAction<string>) {
-      state.selectedDistrics = payload
-    },
+
     setFocusedCoincart(state, { payload }: PayloadAction<number>) {
       state.focusedCoincart = payload
+    },
+    getCoinCartServiceHours() {
+      return undefined
+    },
+    getCoinCartServiceHoursSuccess(
+      state,
+      { payload }: PayloadAction<{ serviceHours: string }>
+    ) {
+      state.serviceHours = payload.serviceHours
+    },
+    getCoinCartServiceHoursFailure() {
+      return undefined
+    },
+    setLoading(state, { payload }: PayloadAction<boolean>) {
+      state.loading = payload
     },
   },
 })

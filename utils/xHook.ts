@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { Map as LeafletMapProps } from 'leaflet'
 
 import { defaultCenter } from '../constant/map'
 import { Coordinate } from '../types/common'
@@ -22,4 +23,17 @@ export const useCurrentLocation = () => {
   }
 
   return { currLocation, initCurrentLocation }
+}
+
+export const useMap = () => {
+  const [map, setMap] = useState<LeafletMapProps | null>(null)
+
+  useEffect(() => {
+    if (map) window.map = map
+  }, [map])
+
+  return {
+    setMap,
+    map,
+  }
 }
