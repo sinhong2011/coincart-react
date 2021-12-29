@@ -86,7 +86,7 @@ const appSlice = createSlice({
       state.mobileOpen = payload
     },
 
-    setFocusedCoincart(state, { payload }: PayloadAction<number>) {
+    setFocusedCoincart(state, { payload }: PayloadAction<number | null>) {
       state.focusedCoincart = payload
     },
     getCoinCartServiceHours() {

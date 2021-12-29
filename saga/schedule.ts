@@ -21,7 +21,7 @@ function* getCoinCartServiceHours() {
         lang: LangsMapping[language!] as ApiParamsLangs,
       }
     )
-    console.log('getCoinCartServiceHours response', data)
+    // console.log('getCoinCartServiceHours response', data)
     yield put(
       appActions.getCoinCartServiceHoursSuccess({
         serviceHours: data.serviceHours,
@@ -45,7 +45,7 @@ function* getCoinCartSchedule() {
         lang: LangsMapping[language!] as ApiParamsLangs,
       }
     )
-    console.log('getCoinCartSchedule response', data)
+    // console.log('getCoinCartSchedule response', data)
 
     const scheduleList = data.result.records
       .slice(0)

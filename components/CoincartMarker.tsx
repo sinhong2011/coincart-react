@@ -2,20 +2,50 @@ import { Marker } from 'react-leaflet'
 import L from 'leaflet'
 import * as React from 'react'
 import { useTranslation } from 'next-i18next'
-import { CoinCartScheduleDetail } from '../types/api-types'
-import { BottomSheetContext } from '../context/bottom-sheet/slice'
-import { CartDetail } from './CoinCartDetail'
-import { useAppConfig } from '../store/hooks'
+import { CoinCartScheduleDetail } from 'types/api-types'
+import { BottomSheetContext } from 'context/bottom-sheet/slice'
+import { CartDetail } from 'components/CoinCartDetail'
+import { useAppConfig } from 'store/hooks'
+import { CloseButton, Box, Text } from '@chakra-ui/react'
 
 const getIcon = (className = '') =>
   L.icon({
     className,
     iconUrl: '/delivery-truck-delivery-svgrepo-com.svg',
-    iconSize: className === 'focused-coincart' ? [46, 46] : [32, 32],
+    iconSize: className === 'focused-coincart' ? [48, 48] : [32, 32],
   })
 
 type CoincartMarkerProps = {
   coinCart: CoinCartScheduleDetail
+}
+
+const CartDeatailTitle = () => {
+  const { t } = useTranslation()
+  const [, { closeBottomSheet }] = React.useContext(BottomSheetContext)
+  const { setFocusedCoincart } = useAppConfig()
+  return (
+    <Box
+      display={'flex'}
+      style={{
+        position: 'relative',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
+      <Text fontWeight={'bold'}>{t('common.detail')}</Text>
+      <CloseButton
+        size="lg"
+        style={{
+          position: 'absolute',
+          right: -10,
+          top: -15,
+        }}
+        onClick={() => {
+          closeBottomSheet?.()
+          setFocusedCoincart?.(null)
+        }}
+      />
+    </Box>
+  )
 }
 
 const CoincartMarker = ({ coinCart }: CoincartMarkerProps): JSX.Element => {
@@ -24,7 +54,7 @@ const CoincartMarker = ({ coinCart }: CoincartMarkerProps): JSX.Element => {
     appState: { focusedCoincart },
     setFocusedCoincart,
   } = useAppConfig()
-  const { t } = useTranslation()
+
   return (
     <Marker
       position={[coinCart.latitude, coinCart.longitude]}
@@ -36,7 +66,7 @@ const CoincartMarker = ({ coinCart }: CoincartMarkerProps): JSX.Element => {
           window?.map.setView([coinCart.latitude, coinCart.longitude], 14)
           setFocusedCoincart(coinCart.index)
           openBottomSheet?.({
-            title: t('common.detail'),
+            title: <CartDeatailTitle />,
             content: <CartDetail coinCart={coinCart} />,
           })
         },

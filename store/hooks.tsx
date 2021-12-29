@@ -16,7 +16,7 @@ type AppConfigActions = {
   getCoinCartSchedule: () => void
   setAvailableCoincarts: (arr: CoinCartScheduleDetail[]) => void
   setMobileOpen: (mobileOpen: boolean) => void
-  setFocusedCoincart: (focusedCoincart: number) => void
+  setFocusedCoincart: (focusedCoincart: number | null) => void
   getCoinCartServiceHours: () => void
 }
 

@@ -22,6 +22,7 @@
     "duration": "日期",
     "district": "地区",
     "remarks": "备注",
-    "serviceHours": "服务时段"
+    "serviceHours": "服务时段",
+    "coincartList": "收银车列表"
   }
 }

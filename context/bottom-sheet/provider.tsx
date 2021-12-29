@@ -44,8 +44,8 @@ export const BottomSheetProvider = ({
       <BottomSheet
         open={open}
         onDismiss={closeBottomSheet}
-        snapPoints={({ maxHeight }) => maxHeight / 2.1}
-        blocking={true}
+        snapPoints={({ maxHeight }) => maxHeight / 2.2}
+        blocking={false}
         header={bottomSheetContent?.title}
         style={{ zIndex: 9999 }}>
         <SheetContent>{bottomSheetContent?.content}</SheetContent>

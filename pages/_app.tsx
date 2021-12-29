@@ -82,6 +82,7 @@ function CoinCartApp({ Component, pageProps }: AppProps) {
           content="width=device-width, initial-scale=1.0, 
 user-scalable=no"
         />
+        <meta name="theme-color" content="rgba(0, 0, 0, 0.05)" />
       </Head>
       <NextNprogress
         color="rgba(86, 172, 224,0.9)"
