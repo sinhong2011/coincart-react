@@ -22,6 +22,8 @@
     "duration": "日期",
     "district": "地區",
     "remarks": "備註",
-    "serviceHours": "服務時段"
+    "serviceHours": "服務時段",
+    "coincartList": "收銀車列表",
+    "noData": "沒有數據..."
   }
 }

@@ -10,6 +10,7 @@ import { LanguageSelector } from 'components/LanguageSelector'
 import AboutButton from 'components/AboutButton'
 import { useAppConfig } from 'store/hooks'
 import Backdrop from 'components/Backdrop'
+import CoinCartListSheet from '../components/CoinCartListSheet'
 
 const Map = dynamic(
   () => import('components/LeafletMap'), // replace '@components/map' with your component's location
@@ -40,6 +41,7 @@ const HomePage: NextPage = () => {
       <AboutButton />
       <Map />
       <Backdrop />
+      <CoinCartListSheet />
     </div>
   )
 }

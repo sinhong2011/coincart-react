@@ -1,9 +1,9 @@
+import { useContext } from 'react'
 import { CoinCartScheduleDetail } from 'types/api-types'
 import { useTranslation } from 'next-i18next'
-
-import { Box } from '@chakra-ui/react'
-
-import { useAppConfig } from '../store/hooks'
+import { Box, Text, CloseButton } from '@chakra-ui/react'
+import { useAppConfig } from 'store/hooks'
+import { BottomSheetContext } from 'context/bottom-sheet/slice'
 
 type ContentProps = {
   title: string
@@ -50,6 +50,36 @@ export const CartDetail = ({
       <Content title={t('home.serviceHours')}>{appState.serviceHours}</Content>
       <Content title={t('home.district')}>{coinCart.district}</Content>
       <Content title={t('home.remarks')}>{coinCart.remarks}</Content>
+    </Box>
+  )
+}
+
+export const CartDeatailTitle = () => {
+  const { t } = useTranslation()
+  const [, { closeBottomSheet }] = useContext(BottomSheetContext)
+  const { setFocusedCoincart } = useAppConfig()
+
+  return (
+    <Box
+      display={'flex'}
+      style={{
+        position: 'relative',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
+      <Text fontWeight={'bold'}>{t('common.detail')}</Text>
+      <CloseButton
+        size="lg"
+        style={{
+          position: 'absolute',
+          right: -10,
+          top: -15,
+        }}
+        onClick={() => {
+          closeBottomSheet?.()
+          setFocusedCoincart?.(null)
+        }}
+      />
     </Box>
   )
 }

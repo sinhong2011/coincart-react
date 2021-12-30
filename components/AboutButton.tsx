@@ -8,6 +8,7 @@ import {
   HStack,
   Link,
   Divider,
+  Text,
 } from '@chakra-ui/react'
 import { AiOutlineInfoCircle } from 'react-icons/ai'
 
@@ -22,7 +23,7 @@ const Content = () => {
       <Stack m="1">
         <HStack alignItems="flex-end">
           <Heading as="h1">{t('common.appName')}</Heading>
-          <Badge>v1</Badge>
+          <Badge>v{process.env.APP_VERSION}</Badge>
         </HStack>
         <Stack direction="row" m={1} mb={2}>
           <Divider orientation="vertical" height="auto" />
@@ -56,8 +57,20 @@ const AboutButton = () => {
   const [, { openBottomSheet }] = React.useContext(BottomSheetContext)
   const { t } = useTranslation()
 
+  const title = (
+    <Box
+      display={'flex'}
+      style={{
+        position: 'relative',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
+      <Text fontWeight={'bold'}>{t('common.about')}</Text>
+    </Box>
+  )
+
   const openSheet = () => {
-    openBottomSheet?.({ title: t('common.about'), content: <Content /> })
+    openBottomSheet?.({ title, content: <Content />, blocking: true })
   }
   return (
     <IconButton

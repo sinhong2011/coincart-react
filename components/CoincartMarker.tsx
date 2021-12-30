@@ -1,17 +1,16 @@
 import { Marker } from 'react-leaflet'
 import L from 'leaflet'
 import * as React from 'react'
-import { useTranslation } from 'next-i18next'
-import { CoinCartScheduleDetail } from '../types/api-types'
-import { BottomSheetContext } from '../context/bottom-sheet/slice'
-import { CartDetail } from './CoinCartDetail'
-import { useAppConfig } from '../store/hooks'
+
+import { CoinCartScheduleDetail } from 'types/api-types'
+import { useAppConfig } from 'store/hooks'
+import { useOpenCoincartDetail } from 'utils/xHook'
 
 const getIcon = (className = '') =>
   L.icon({
     className,
     iconUrl: '/delivery-truck-delivery-svgrepo-com.svg',
-    iconSize: className === 'focused-coincart' ? [46, 46] : [32, 32],
+    iconSize: className === 'focused-coincart' ? [48, 48] : [32, 32],
   })
 
 type CoincartMarkerProps = {
@@ -19,12 +18,11 @@ type CoincartMarkerProps = {
 }
 
 const CoincartMarker = ({ coinCart }: CoincartMarkerProps): JSX.Element => {
-  const [, { openBottomSheet }] = React.useContext(BottomSheetContext)
   const {
     appState: { focusedCoincart },
-    setFocusedCoincart,
   } = useAppConfig()
-  const { t } = useTranslation()
+  const { openCoincartDetail } = useOpenCoincartDetail()
+
   return (
     <Marker
       position={[coinCart.latitude, coinCart.longitude]}
@@ -33,12 +31,7 @@ const CoincartMarker = ({ coinCart }: CoincartMarkerProps): JSX.Element => {
       )}
       eventHandlers={{
         click: () => {
-          window?.map.setView([coinCart.latitude, coinCart.longitude], 14)
-          setFocusedCoincart(coinCart.index)
-          openBottomSheet?.({
-            title: t('common.detail'),
-            content: <CartDetail coinCart={coinCart} />,
-          })
+          openCoincartDetail(coinCart)
         },
       }}></Marker>
   )

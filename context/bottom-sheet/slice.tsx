@@ -1,11 +1,12 @@
 import { createContext } from 'react'
 
-import { ActionMap } from '../../types/common'
-import { contextLogger } from '../../utils/xCm'
+import { ActionMap } from 'types/common'
+import { contextLogger } from 'utils/xCm'
 
 export type BottomSheetContent = {
   title: React.ReactNode
   content: React.ReactNode
+  blocking?: boolean
 }
 
 export type BottomSheetState = {
