@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { BottomSheet } from 'react-spring-bottom-sheet'
 import { useTranslation } from 'next-i18next'
 import { SheetContent } from 'components/SheetContent'
@@ -24,8 +24,25 @@ type CartListItemProps = {
 const CardItem = ({ coinCart }: CartListItemProps) => {
   const { t } = useTranslation()
   const { openCoincartDetail } = useOpenCoincartDetail()
+  const { appState } = useAppConfig()
+  const cardRef = useRef<HTMLLIElement>(null)
+
+  useEffect(() => {
+    if (
+      appState.focusedCoincart &&
+      appState.focusedCoincart === coinCart.index
+    ) {
+      cardRef.current?.scrollIntoView({
+        block: 'center',
+        behavior: 'smooth',
+        inline: 'nearest',
+      })
+    }
+  }, [appState.focusedCoincart])
+
   return (
     <ListItem
+      ref={cardRef}
       _active={{
         opacity: 0.7,
       }}
@@ -36,7 +53,10 @@ const CardItem = ({ coinCart }: CartListItemProps) => {
       width={'100%'}
       onClick={() => {
         openCoincartDetail(coinCart)
-      }}>
+      }}
+      backgroundColor={
+        coinCart.index === appState.focusedCoincart ? 'aliceblue' : undefined
+      }>
       <Box display="flex" flexDirection={'column'} p="4">
         <Box
           display="flex"
@@ -44,17 +64,8 @@ const CardItem = ({ coinCart }: CartListItemProps) => {
           justifyContent={'space-between'}
           mb="1">
           <HStack>
-            <Text color="gray.600" fontWeight="bold" letterSpacing="wide">
-              {t('home.cartNo')}
-            </Text>
-            <Text
-              color="gray.600"
-              fontWeight="bold"
-              letterSpacing="wide"
-              textTransform="uppercase"
-              ml="1"
-              paddingBottom={'2px'}>
-              {coinCart.cart_no}
+            <Text color="gray.700" fontWeight="bold" letterSpacing="wide">
+              {`${t('home.cartNo')} - ${coinCart.cart_no}`}
             </Text>
           </HStack>
           <Badge borderRadius="full" px="2" colorScheme="twitter">
@@ -62,7 +73,7 @@ const CardItem = ({ coinCart }: CartListItemProps) => {
           </Badge>
         </Box>
         <Box>
-          <Text color="gray.600" fontWeight="bold" letterSpacing="wide">
+          <Text color="gray.700" fontWeight={'semibold'} letterSpacing="wide">
             {`${coinCart.start_date} ${t('common.to')} ${coinCart.end_date}`}
           </Text>
           <Divider />
