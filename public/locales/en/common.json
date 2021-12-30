@@ -23,6 +23,7 @@
     "district": "District",
     "remarks": "Remarks",
     "serviceHours": "Service Hours",
-    "coincartList": "Coin Cart List"
+    "coincartList": "Coin Cart List",
+    "noData": "No Data..."
   }
 }

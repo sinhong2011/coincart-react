@@ -40,12 +40,11 @@ export const BottomSheetProvider = ({
     <BottomSheetContext.Provider
       value={[state, { openBottomSheet, closeBottomSheet }]}>
       {children}
-
       <BottomSheet
         open={open}
         onDismiss={closeBottomSheet}
         snapPoints={({ maxHeight }) => maxHeight / 2.2}
-        blocking={false}
+        blocking={!!bottomSheetContent?.blocking}
         header={bottomSheetContent?.title}
         style={{ zIndex: 9999 }}>
         <SheetContent>{bottomSheetContent?.content}</SheetContent>

@@ -1,6 +1,6 @@
 {
   "name": "coincart-react",
-  "version": "0.1.0",
+  "version": "2",
   "private": true,
   "scripts": {
     "dev": "env-cmd -e local next dev",
@@ -47,6 +47,7 @@
   "devDependencies": {
     "@svgr/webpack": "^5.5.0",
     "@types/leaflet": "^1.7.5",
+    "@types/ramda": "^0.27.62",
     "@types/react": "17.0.32",
     "@types/redux-logger": "^3.0.9",
     "@types/yargs": "^17.0.4",
