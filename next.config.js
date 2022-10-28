@@ -1,21 +1,21 @@
-const withPWA = require('next-pwa')
+const withPWA = require('next-pwa')({
+  dest: 'public'
+})
+
 const { i18n } = require('./next-i18next.config')
 /** @type {import('next').NextConfig} */
 
 module.exports = withPWA({
-  reactStrictMode: true,
-  productionBrowserSourceMaps: true,
-  trailingSlash: true,
   eslint: {
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: true
   },
   images: {
-    disableStaticImages: true,
+    disableStaticImages: true
   },
   pwa: {
     dest: 'public',
     register: true,
-    skipWaiting: true,
+    skipWaiting: true
   },
   publicRuntimeConfig: {
     REACT_APP_ENV: process.env.REACT_APP_ENV,
@@ -26,7 +26,7 @@ module.exports = withPWA({
     MAPBOX_USERNAME: process.env.MAPBOX_USERNAME,
     MAPBOX_STYLE_ID: process.env.MAPBOX_STYLE_ID,
     GOOGLE_ANALYTICS_ID: process.env.GOOGLE_ANALYTICS_ID,
-    APP_VERSION: process.env.APP_VERSION,
+    APP_VERSION: process.env.APP_VERSION
   },
   env: {
     REACT_APP_ENV: process.env.REACT_APP_ENV,
@@ -37,7 +37,7 @@ module.exports = withPWA({
     MAPBOX_USERNAME: process.env.MAPBOX_USERNAME,
     MAPBOX_STYLE_ID: process.env.MAPBOX_STYLE_ID,
     GOOGLE_ANALYTICS_ID: process.env.GOOGLE_ANALYTICS_ID,
-    APP_VERSION: process.env.APP_VERSION,
+    APP_VERSION: process.env.APP_VERSION
   },
   swcMinify: true,
   i18n,
@@ -45,8 +45,8 @@ module.exports = withPWA({
     c.module.rules.push({
       test: /\.svg$/,
       issuer: /\.(js|ts)x?$/,
-      use: ['@svgr/webpack'],
+      use: ['@svgr/webpack']
     })
     return c
-  },
+  }
 })

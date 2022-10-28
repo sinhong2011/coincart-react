@@ -28,8 +28,8 @@ export default function Custom404() {
 export async function getStaticProps({ locale }: { locale: Languangs }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale)),
+      ...(await serverSideTranslations(locale))
       // Will be passed to the page component as props
-    },
+    }
   }
 }
