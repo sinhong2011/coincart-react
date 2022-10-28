@@ -56,10 +56,8 @@ export const useAppConfig = () => {
     },
     getCoinCartServiceHours: () => {
       dispatch(appActions.getCoinCartServiceHours())
-    },
+    }
   }
 
-  const appConfig = { appState, ...methods }
-
-  return appConfig
+  return { appState, ...methods }
 }
