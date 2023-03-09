@@ -117,16 +117,16 @@
     "operator-linebreak": 0,
     "max-classes-per-file": 0,
     "semi": ["error", "never"],
-    "comma-dangle": [
-      "error",
-      {
-        "arrays": "always-multiline",
-        "objects": "always-multiline",
-        "imports": "always-multiline",
-        "exports": "always-multiline",
-        "functions": "never"
-      }
-    ],
+//    "comma-dangle": [
+//      "error",
+//      {
+//        "arrays": "always-multiline",
+//        "objects": "always-multiline",
+//        "imports": "always-multiline",
+//        "exports": "always-multiline",
+//        "functions": "never"
+//      }
+//    ],
     "quotes": ["error", "single"],
     "quote-props": ["error", "as-needed"],
     "eol-last": ["error", "always"],

@@ -6,18 +6,18 @@ import { getFilterCoincartList } from 'utils/xCm'
 
 const DistrictFilter = () => {
   const { appState, setAvailableCoincarts } = useAppConfig()
-  const [selectedDistrics, setSelectedDistrics] = useState('')
+  const [selectedDistricts, setSelectedDistricts] = useState('')
   const { t } = useTranslation()
 
   const updateCoincartDisplayList = () => {
-    if (!selectedDistrics) {
+    if (!selectedDistricts) {
       setAvailableCoincarts(
         getFilterCoincartList(appState.coincartScheduleList!)
       )
     } else {
       const filteredList = getFilterCoincartList(
         appState.coincartScheduleList || []
-      )?.filter(coincart => coincart.district === selectedDistrics)
+      )?.filter(coincart => coincart.district === selectedDistricts)
 
       setAvailableCoincarts(filteredList)
 
@@ -29,26 +29,26 @@ const DistrictFilter = () => {
 
   useEffect(() => {
     updateCoincartDisplayList()
-  }, [selectedDistrics])
+  }, [selectedDistricts])
 
-  const onSelectedDistricsChange:
+  const onSelectedDistrictsChange:
     | ChangeEventHandler<HTMLSelectElement>
     | undefined = ({ target }) => {
     const value = target.value as string
-    setSelectedDistrics(value)
+    setSelectedDistricts(value)
   }
 
   return (
     <Select
-      value={selectedDistrics}
-      onChange={onSelectedDistricsChange}
+      value={selectedDistricts}
+      onChange={onSelectedDistrictsChange}
       placeholder={t('common.filterByDistrict')}
       style={{
         position: 'fixed',
         zIndex: 1000,
         top: 'calc(env(safe-area-inset-top) + 12px)',
         right: 10,
-        width: '80%',
+        width: '80%'
       }}
       bg="white"
       borderColor="white">
