@@ -1,4 +1,4 @@
-Sitemap: https://www.coincart-map-hk.app/sitemap.xml
+Sitemap: https://coincart.niskan516dev.com/sitemap.xml
 
 User-agent: *
 Allow: /*
